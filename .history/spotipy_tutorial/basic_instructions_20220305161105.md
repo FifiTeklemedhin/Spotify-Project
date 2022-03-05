@@ -1,4 +1,4 @@
-# Basic things to remember (Spotipy and generally)
+# Basic things to remember (spotipy and generally)
 ## 🚨🚨 This will not work if pulled from repo without:
 * a file called credentials.py with the following variables:
   * client id
