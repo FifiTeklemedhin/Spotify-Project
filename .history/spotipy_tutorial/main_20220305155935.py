@@ -16,14 +16,23 @@ sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id= credentials.SPOTIPY_CL
 
 
 # requests client's top tracks and lists them out w/ link
-# can change time_range to short_term (past 4 weeks) or middle_term (default, past 6 months)
-results = sp.current_user_top_tracks(time_range= "long_term")
+results = sp.current_user_top_tracks()
 
 ##print(results['items'][0]['name'] + " : " + results['items'][0]['external_urls']['spotify'])
 
 for idx, track in enumerate(results['items']):
-    print(idx, track['artists'][0]['name'], " – ", track['name'], "\n" , track['external_urls']['spotify'], "\n")
+    print(idx, track['artists'][0]['name'], " – ", track['name'], ": link: " , track['external_urls']['spotify'])
 
 
+
+
+'''
+# request client's 50 most recent songs and list them out
+results = sp.current_user_recently_played()
+for idx, item in enumerate(results['items']):
+    track = item['track']
+    print(idx, track['artists'][0]['name'], " – ", track['name'])
+
+'''
 
 

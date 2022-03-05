@@ -1,6 +1,4 @@
 # Basic things to remember (spotipy and generally)
-## this will not work if pulled from repo without a file called credentials.py with the following info
-* client id, secret, ridirect uri
 ## Venv
 ### First Steps
 * seeing if you have installed it: virtualenv venv

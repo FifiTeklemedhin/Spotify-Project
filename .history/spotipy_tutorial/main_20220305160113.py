@@ -16,8 +16,7 @@ sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id= credentials.SPOTIPY_CL
 
 
 # requests client's top tracks and lists them out w/ link
-# can change time_range to short_term (past 4 weeks) or middle_term (default, past 6 months)
-results = sp.current_user_top_tracks(time_range= "long_term")
+results = sp.current_user_top_tracks()
 
 ##print(results['items'][0]['name'] + " : " + results['items'][0]['external_urls']['spotify'])
 

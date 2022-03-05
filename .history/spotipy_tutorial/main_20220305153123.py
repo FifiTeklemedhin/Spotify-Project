@@ -10,20 +10,24 @@ SPOTIPY_CLIENT_SECRET = os.environ['SPOTIPY_CLIENT_SECRET']
 SPOTIPY_REDIRECT_URI = os.environ['SPOTIPY_REDIRECT_URI']
 '''
 
-scope = "user-top-read"
+scope = "user-read-recently-played"
 # authentication, just made a spotipy object
 sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id= credentials.SPOTIPY_CLIENT_ID, client_secret= credentials.SPOTIPY_CLIENT_SECRET, redirect_uri= credentials.SPOTIPY_REDIRECT_URI, scope=scope))
 
 
-# requests client's top tracks and lists them out w/ link
-# can change time_range to short_term (past 4 weeks) or middle_term (default, past 6 months)
-results = sp.current_user_top_tracks(time_range= "long_term")
+# requests client's top tracks and lists them out
+results = sp.current_user_top_tracks
+for track_num, track in enumerate(results['items']):
+    track = track['track']
+    print("#{} : {}".format(track_num, track))
 
-##print(results['items'][0]['name'] + " : " + results['items'][0]['external_urls']['spotify'])
+'''
+# request client's 50 most recent songs and list them out
+results = sp.current_user_recently_played()
+for idx, item in enumerate(results['items']):
+    track = item['track']
+    print(idx, track['artists'][0]['name'], " – ", track['name'])
 
-for idx, track in enumerate(results['items']):
-    print(idx, track['artists'][0]['name'], " – ", track['name'], "\n" , track['external_urls']['spotify'], "\n")
-
-
+'''
 
 
