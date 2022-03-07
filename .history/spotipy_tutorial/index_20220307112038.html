@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<head>
+<hl style="font-size:40px">My Top Tracks</hl>
+<p id="filler area">Sample text</p>
+<script src="main_js.js" type="module" src="https://code.jquery.com/jquery-3.1.1.min.js">
+    $.ajax(
+   {
+      type: "POST",
+      url: "./main.py",
+      data: 
+      {
+   
+      }
+   }
+   ).done(function( ) 
+   {
+       document.getElementById("filler area").innerHTML = data;
+      console.log(data);
+   });
+</script>
+
+</head>
+</html>

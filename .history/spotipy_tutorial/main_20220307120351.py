@@ -10,11 +10,11 @@ message = """<html>
 <head></head>
 <body>
 <p>Hello World!</p>
-{}
+<p>{}</p>
 </body>
 </html>"""
 
-link_song_placeholder = "<a href=\"{}\">{}</a><br/></br>"
+link_song_placeholder = "<a href=\"{}\">{}</a>"
 
 #f.write(message)
 #f.close()
@@ -31,10 +31,7 @@ results = sp.current_user_top_tracks(time_range= "long_term")
 ##print(results['items'][0]['name'] + " : " + results['items'][0]['external_urls']['spotify'])
 new_line = ""
 for idx, track in enumerate(results['items']):
-    song_name = track['artists'][0]['name'] + " – " + track['name']
-    link = track['external_urls']['spotify']
-
-    new_line += link_song_placeholder.format(link, song_name)
+    new_line += "{}{}{}{}{}{}{}".format(idx, track['artists'][0]['name'], " – ", track['name'], "\n" , track['external_urls']['spotify'], "\n")
 
 f.write(message.format(new_line))
 f.close()

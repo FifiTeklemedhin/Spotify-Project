@@ -14,7 +14,7 @@ message = """<html>
 </body>
 </html>"""
 
-link_song_placeholder = "<a href=\"{}\">{}</a><br/></br>"
+link_song_placeholder = "<a href=\"{}\">{}</a>"
 
 #f.write(message)
 #f.close()
@@ -34,7 +34,7 @@ for idx, track in enumerate(results['items']):
     song_name = track['artists'][0]['name'] + " – " + track['name']
     link = track['external_urls']['spotify']
 
-    new_line += link_song_placeholder.format(link, song_name)
+    new_line += link_song_placeholder.format(link, song_name) + \n
 
 f.write(message.format(new_line))
 f.close()

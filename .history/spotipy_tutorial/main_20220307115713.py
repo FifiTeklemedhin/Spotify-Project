@@ -8,16 +8,11 @@ f = open('helloworld.html','w')
 
 message = """<html>
 <head></head>
-<body>
-<p>Hello World!</p>
-{}
-</body>
+<body><p>Hello World!</p></body>
 </html>"""
 
-link_song_placeholder = "<a href=\"{}\">{}</a><br/></br>"
-
 #f.write(message)
-#f.close()
+f.close()
 
 scope = "user-top-read"
 
@@ -29,15 +24,10 @@ sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id= credentials.SPOTIPY_CL
 results = sp.current_user_top_tracks(time_range= "long_term")
 
 ##print(results['items'][0]['name'] + " : " + results['items'][0]['external_urls']['spotify'])
-new_line = ""
+
 for idx, track in enumerate(results['items']):
-    song_name = track['artists'][0]['name'] + " – " + track['name']
-    link = track['external_urls']['spotify']
+    f.write(idx, track['artists'][0]['name'], " – ", track['name'], "\n" , track['external_urls']['spotify'], "\n")
 
-    new_line += link_song_placeholder.format(link, song_name)
-
-f.write(message.format(new_line))
-f.close()
 
 
 
