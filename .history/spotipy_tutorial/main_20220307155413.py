@@ -18,7 +18,7 @@ def writeTopTracksHTML():
     </html>"""
 
     link_song_placeholder = "<a href=\"{}\">{}</a><br/></br>"
-    image_placeholder = "<img width=\"250px\" src=\"{}\" alt=\"{}\"><br/></br>"
+    image_placeholder = "<img width=\"250px\" src=\"{}\" alt=\"{}\">"
     scope = "user-top-read"
 
     # authentication, just made a spotipy object
@@ -33,10 +33,10 @@ def writeTopTracksHTML():
     for idx, track in enumerate(results['items']):
         song_name = track['artists'][0]['name'] + " – " + track['name']
         link = track['external_urls']['spotify']
-        image_link = track['album']['images'][0]["url"]
-        print(image_link)
+        image_link = results['items'][0]['album']['images'][0]["url"]
 
-        new_line += image_placeholder.format(image_link, song_name) + "\n" + link_song_placeholder.format(link, song_name)
+        new_line += link_song_placeholder.format(link, song_name) + "\n" + image_placeholder.format(image_link, song_name)
+
     f.write(message.format(new_line))
     f.close()
 

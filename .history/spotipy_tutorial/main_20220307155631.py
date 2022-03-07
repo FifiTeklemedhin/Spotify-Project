@@ -18,7 +18,7 @@ def writeTopTracksHTML():
     </html>"""
 
     link_song_placeholder = "<a href=\"{}\">{}</a><br/></br>"
-    image_placeholder = "<img width=\"250px\" src=\"{}\" alt=\"{}\"><br/></br>"
+    image_placeholder = "<img width=\"250px\" src=\"{}\" alt=\"{}\">"
     scope = "user-top-read"
 
     # authentication, just made a spotipy object
