@@ -5,9 +5,12 @@ from spotipy.oauth2 import SpotifyOAuth
 import credentials
 import sys
 
-def writeTopTracksHTML():   
-    # literally just makes a file
-    f = open('index.html','w')
+from flask import Flask
+from flask import Flask, flash, redirect, render_template, request, session
+app = Flask(__name__)
+
+@app.route("/")
+def index():
 
     message = """<html>
     <head></head>
@@ -30,21 +33,25 @@ def writeTopTracksHTML():
     results = sp.current_user_top_tracks(time_range= "short_term")
 
     ##print(results['items'][0]['name'] + " : " + results['items'][0]['external_urls']['spotify'])
+    
     new_line = ""
-    all_track_data = {} 
-    for track in enumerate(results['items']):
-        song_name = track['artists'][0]['name'] + " – " + track['name']
-        single_link = track['external_urls']['spotify']
+    all_track_data = dict()
+    for idx, track in enumerate(results['items']): # from what I understand, need index as a placeholder for key ( enums are key-value pairs), track as value
+        track_name = track['artists'][0]['name'] + " – " + track['name']
+        track_link = track['external_urls']['spotify'] # used as unique identifier
         image_link = track['album']['images'][0]["url"]
-        print(single_link)
+        artist_name = track['artists'][0]['name'] # I think it currently only gets one artist name even if there are many
+
+        # inserts data into track
+        all_track_data[track_link] = {"track_name": track_name, "artist_name" : artist_name, "image_link": image_link}
+    print(all_track_data)
+    
+    return render_template("index.html", all_track_data = all_track_data) # don't need to specify that index.html is in templates folder as render_templates automatically assumes its in there
 
 
-        new_line += image_placeholder.format(image_link, song_name) + "\n" + link_song_placeholder.format(single_link, song_name)
-    f.write(message.format(new_line))
-    f.close()
 
+if __name__ == "__main__":
+  app.run()
 
-
-writeTopTracksHTML()
-#print(results['items'][0]['album']['images'][0]["url"])
-
+ 
+    

@@ -2,3 +2,14 @@
 {% block title%}
 Tracks: listened to in the short term
 {% endblock %}
+
+{% block main%}
+    <h1>HELLO</h1>
+    {% for track in all_track_data %}
+        track: {{track}}
+        track link: {{all_track_data[track]['track_link']}}
+        image link: {{all_track_data[track]['image_link']}}
+        <a href="\{{all_track_data[track]['track_link']}}\">{{all_track_data[track]['track_name']}}</a><br/><br>
+        <img width="250px" src="{{all_track_data[track]['image_link']}}" alt="{{all_track_data[track]['track_name']}}"><br/><br>
+    {% endfor %}
+{% endblock %}
