@@ -30,14 +30,18 @@ def writeTopTracksHTML():
     results = sp.current_user_top_tracks(time_range= "short_term")
 
     ##print(results['items'][0]['name'] + " : " + results['items'][0]['external_urls']['spotify'])
+    
     new_line = ""
-    for idx, track in enumerate(results['items']):
-        song_name = track['artists'][0]['name'] + " – " + track['name']
-        link = track['external_urls']['spotify']
+    all_track_data = {}
+    for idx, track in enumerate(results['items']): # from what I understand, need index as a placeholder for key ( enums are key-value pairs), track as value
+        track_name = track['artists'][0]['name'] + " – " + track['name']
+        single_link = track['external_urls']['spotify'] # used as unique identifier
         image_link = track['album']['images'][0]["url"]
-        print(image_link)
 
-        new_line += image_placeholder.format(image_link, song_name) + "\n" + link_song_placeholder.format(link, song_name)
+        # inserts data into track
+        all_track_data[single_link] = {"track_name": track_name, "image_link": image_link}
+
+        new_line += image_placeholder.format(image_link, track_name) + "\n" + link_song_placeholder.format(single_link, track_name)
     f.write(message.format(new_line))
     f.close()
 
