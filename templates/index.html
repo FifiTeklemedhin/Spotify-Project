@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+{% block title%}
+   Tracks listened to in the short term
+{% endblock %}
+
+{% block main%}
+    {% for track in all_track_data %}
+        <!-- 
+        track: {{track}}
+        track link: {{all_track_data[track]['track_link']}}
+        image link: {{all_track_data[track]['image_link']}} -->
+
+        <img width="250px" src="{{all_track_data[track]['image_link']}}" alt="{{all_track_data[track]['track_name']}}"><br/><br>
+        <a href="{{all_track_data[track]['track_link']}}">{{all_track_data[track]['track_name']}}</a><br/><br>
+       
+    {% endfor %}
+{% endblock %}
