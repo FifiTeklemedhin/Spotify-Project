@@ -1,3 +1,0 @@
-SPOTIPY_CLIENT_SECRET = "571d1ff3dca14a51ad5d3b6161ba10e3"
-SPOTIPY_CLIENT_ID = "c439ee9eaddb4e41a2f06cfb01ad376f"
-SPOTIPY_REDIRECT_URI = "http://localhost:8888/callback"
