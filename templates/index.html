@@ -30,17 +30,18 @@
     {% endfor %}
 
 
-    {% for track in all_track_data %}
+    
     <div id="track_image_grid" class="container text-center">
-        <div class="row track_grid_div" >
-            <div class="col">
+        <div class="row" >
+            {% for track in all_track_data %}
+            <div class="col track_grid_div">
                 <img src="{{all_track_data[track]['image_link']}}" class="img-fluid" alt="{{all_track_data[track]['track_name']}}">
             </div>
-
+            {% endfor %}
             </div>
         </div>
     </div>
-    {% endfor %}
+    
 
 
 

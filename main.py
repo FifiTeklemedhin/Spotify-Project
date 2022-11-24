@@ -35,6 +35,7 @@ def index():
     ##print(results['items'][0]['name'] + " : " + results['items'][0]['external_urls']['spotify'])
     
     new_line = ""
+    count = 0
     all_track_data = dict()
     for idx, track in enumerate(results['items']): # from what I understand, need index as a placeholder for key ( enums are key-value pairs), track as value
         track_name = track['artists'][0]['name'] + " – " + track['name']
@@ -44,7 +45,9 @@ def index():
 
         # inserts data into track
         all_track_data[track_link] = {"track_name": track_name, "track_link": track_link, "artist_name" : artist_name, "image_link": image_link}
-  
+        count+=1
+        if count > 3:
+            break
     # flask passes data to html page
     return render_template("index.html", all_track_data = all_track_data) # don't need to specify that index.html is in templates folder as render_templates automatically assumes its in there
 
