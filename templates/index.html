@@ -9,29 +9,6 @@
 
 {% block main%}
 
-    <!-- {% include 'carousel.html' %}
-
-    {% block carousel_items %}
-        {% for track in all_track_data %}
-        <div class="item">
-            <div class="work">
-                <div class="img d-flex align-items-center justify-content-center rounded" style="width: 300px; background-image: url({{all_track_data[track]['image_link']}};">
-                    <img
-                src="{{all_track_data[track]['image_link']}}"
-                data-mdb-img="{{all_track_data[track]['image_link']}}"
-                alt="{{all_track_data[track]['track_name']}}"
-                class="w-100"
-            />
-                </div>
-                 <div class="text pt-3 w-100 text-center">
-                    <h3><a href="#">Work 01</a></h3>
-                    <span>Web Design</span>
-                </div> 
-            </div>
-        </div>
-        {% endfor %}
-    {% endblock%}
-     -->
 
 
     {% for track in all_track_data %}
@@ -53,41 +30,18 @@
     {% endfor %}
 
 
-
-    <div class="lightbox">
-        <div class="multi-carousel">
-        <div class="multi-carousel-inner">
-
-            {% for track in all_track_data %}
-            <div class="multi-carousel-item" style="width:250px;">
-            <img
-                width="250px"
-                src="{{all_track_data[track]['image_link']}}"
-                data-mdb-img="{{all_track_data[track]['image_link']}}"
-                alt="{{all_track_data[track]['track_name']}}"
-                class="w-100"
-            />
+    {% for track in all_track_data %}
+    <div id="track_image_grid" class="container text-center">
+        <div class="row track_grid_div" >
+            <div class="col">
+                <img src="{{all_track_data[track]['image_link']}}" class="img-fluid" alt="{{all_track_data[track]['track_name']}}">
             </div>
 
-            {% endfor %}
-        </div>
-        <button
-            class="carousel-control-prev"
-            type="button"
-            tabindex="0"
-            data-mdb-slide="prev"
-        >
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        </button>
-        <button
-            class="carousel-control-next"
-            type="button"
-            tabindex="0"
-            data-mdb-slide="next"
-        >
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        </button>
+            </div>
         </div>
     </div>
+    {% endfor %}
+
+
 
   {% endblock %} 
