@@ -43,9 +43,9 @@ def index():
         artist_name = track['artists'][0]['name'] # I think it currently only gets one artist name even if there are many
 
         # inserts data into track
-        all_track_data[track_link] = {"track_name": track_name, "artist_name" : artist_name, "image_link": image_link}
-    print(all_track_data)
-    
+        all_track_data[track_link] = {"track_name": track_name, "track_link": track_link, "artist_name" : artist_name, "image_link": image_link}
+  
+    # flask passes data to html page
     return render_template("index.html", all_track_data = all_track_data) # don't need to specify that index.html is in templates folder as render_templates automatically assumes its in there
 
 
