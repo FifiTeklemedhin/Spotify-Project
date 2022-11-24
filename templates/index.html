@@ -36,6 +36,7 @@
             {% for track in all_track_data %}
             <div class="col track_grid_div">
                 <img src="{{all_track_data[track]['image_link']}}" class="img-fluid" alt="{{all_track_data[track]['track_name']}}">
+                <a class="track-link" href="{{all_track_data[track]['track_link']}}">{{all_track_data[track]['track_name']}}</a><br/><br>
             </div>
             {% endfor %}
             </div>

@@ -108,10 +108,10 @@ h1 {
     padding-top: 20px;
 }
 
-a:link{
+
+.track-link {
     color: #1eb954;
 }
-
 .multi-carousel-item {
     width: 100px;
     height: auto;
