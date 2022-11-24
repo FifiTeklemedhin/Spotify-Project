@@ -6,20 +6,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../static/styles.css">
-
-    <title>Bootstrap demo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    </title>
-    <h1>
-        CS Spotify Project:
-    </h1>
-    <h2 style="margin-bottom: 50px">
-        {% block title %}{% endblock %}
-    </h2>
+
+    <title> {% block title %}{% endblock %}</title>
+
+
 </head>
 
 <body class="body">
+    <h1 class="page_title">
+        {% block page_title %}{% endblock %}
+    </h1>
     <main class="container-fluid py-5 text-center">
         {% block main %}{% endblock %}
     </main>

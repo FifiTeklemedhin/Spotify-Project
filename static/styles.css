@@ -1,4 +1,4 @@
-
+/*imported font styles from https://betterstudio.com/fonts/spotify-font/#:~:text=What%20is%20the%20Spotify%20website,in%20four%20weights%20and%20italics.*/
 @font-face {
 
     font-family: "Spotify-Black";
@@ -49,7 +49,6 @@
 
 }
 
-
 @font-face {
     font-family: "Spotify-Bold2";
     src: url("Gotham-Spotify-Font/GothamBold.ttf") format("truetype");
@@ -93,26 +92,6 @@
 
 
 
-    /* src: url("Gotham-Spotify-Font/Gotham-Bold.otf") format("opentype"),
-    url("Gotham-Spotify-Font/Gotham-BookIalic.otf") format("opentype"),
-    url("Gotham-Spotify-Font/Gotham-Thin.otf") format("opentype"),
-    url("Gotham-Spotify-Font/Gotham-ThinItalic.otf") format("opentype"),
-    url("Gotham-Spotify-Font/Gotham-UltraItalic.otf") format("opentype"),
-    url("Gotham-Spotify-Font/Gotham-XLight.otf") format("opentype"),
-    url("Gotham-Spotify-Font/Gotham-XLightItalic.otf") format("opentype");
-    src: url("Gotham-Spotify-Font/GothamBold.ttf") format("tff"),
-    url("Gotham-Spotify-Font/GothamBoldItalic.ttf") format("tff"),
-    url("Gotham-Spotify-Font/GothamBold.ttf") format("tff"),
-    url("Gotham-Spotify-Font/GothamBoldItalic.ttf") format("tff"),
-    url("Gotham-Spotify-Font/GothamLight.ttf") format("tff"),
-    url("Gotham-Spotify-Font/GothamLightItalic.ttf") format("tff"),
-    url("Gotham-Spotify-Font/GothamMedium_1.ttf") format("tff"),
-    url("Gotham-Spotify-Font/GothamMedium.ttf") format("tff"),
-    url("Gotham-Spotify-Font/GothamMediumItalic.ttf") format("tff"); */
-    
-
-
-
 .body {
     background-color: #141414;
     color: #cbcbcb; /*text color*/
@@ -121,5 +100,19 @@
 h1 {
     color: #1eb954;
     font-family:'Spotify-Bold', 'Franklin Gothic';
-    
+    font-size: 40px; /* not working */
+}
+
+.page_title {
+    margin-left: 20px;
+    padding-top: 20px;
+}
+
+a:link{
+    color: #1eb954;
+}
+
+.multi-carousel-item {
+    width: 100px;
+    height: auto;
 }
