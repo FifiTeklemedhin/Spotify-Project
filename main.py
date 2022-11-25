@@ -75,7 +75,7 @@ def index():
         if col_count == num_cols:
             track_data.append(current_row)
             current_row = []
-            col_count = 0
+            col_count = 1
             row_count +=1
 
         elif num_rows == row_count and col_count == remainder_cols: # if on the last row and the last track, append row to list

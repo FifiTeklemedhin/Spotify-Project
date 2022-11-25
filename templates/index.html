@@ -38,13 +38,12 @@ Track History
 
 <div id="track_image_grid" class="container text-center">
     <div class="row">
-        
         {% for track in range(track_data[track_row] | length)%}
-        <!-- {{track_data[track_row][track]['track_name']}} -->
           <div class="col track_grid_div">
-            <img src="{{track_data[track_row][track]['image_link']}}" class="img-fluid"
+            <img class= "album-cover" src="{{track_data[track_row][track]['image_link']}}" class="img-fluid"
                 alt="{{track_data[track_row][track]['track_name']}}">
-            <a class="track-link"
+           <br>
+                <a class="track-link"
                 href="{{track_data[track_row][track]['track_link']}}">{{track_data[track_row][track]['track_name']}}</a><br /><br>
         </div>
         
