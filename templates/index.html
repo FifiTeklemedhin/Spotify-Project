@@ -1,37 +1,62 @@
 {% extends 'layout.html' %}
 {% block title%}
-   Track History
+Track History
 {% endblock %}
 
 {% block page_title%}
-   Track History
+Track History
 {% endblock %}
 
 {% block main%}
 
 
-
+<!-- 
     {% for track in all_track_data %}
-        <!-- 
+     
         track: {{track}}
         track link: {{all_track_data[track]['track_link']}}
         image link: {{all_track_data[track]['image_link']}} -->
 
-        <!-- Displays images and links to track-->
-        
+<!-- Displays images and links to track-->
 
-        
-        <!-- <div>
+
+
+<!-- <div>
             <img width="250px" src="{{all_track_data[track]['image_link']}}" alt="{{all_track_data[track]['track_name']}}"><br/><br>
             <a href="{{all_track_data[track]['track_link']}}">{{all_track_data[track]['track_name']}}</a><br/><br>
-        </div> -->
+        </div> 
        
        
-    {% endfor %}
+    {% endfor %} -->
 
 
-    
-    <div id="track_image_grid" class="container text-center">
+
+
+<!-- {{track_data[0]['track_name']}} -->
+
+{% for track_row in range(track_data | length)%}
+
+<div id="track_image_grid" class="container text-center">
+    <div class="row">
+        {{track_data[track_row]}}
+        {% for track in range(track_data[track_row] | length)%}
+        
+          <div class="col track_grid_div">
+            <img src="{{track['image_link']}}" class="img-fluid"
+                alt="{{track['track_name']}}">
+            <a class="track-link"
+                href="{{track['track_link']}}">{{track['track_name']}}</a><br /><br>
+        </div>
+        
+      
+        {% endfor %}
+    </div>
+</div>
+</div>
+
+{% endfor %}
+
+<!-- <div id="track_image_grid" class="container text-center">
         <div class="row" >
             {% for track in all_track_data %}
             <div class="col track_grid_div">
@@ -42,8 +67,8 @@
             </div>
         </div>
     </div>
-    
+     -->
 
 
 
-  {% endblock %} 
+{% endblock %}
