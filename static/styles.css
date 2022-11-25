@@ -105,6 +105,15 @@ h1 {
     font-size: 40px; /* not working */
 }
 
+h2 {
+    color: #cbcccc;
+    font-family:'Spotify-BoldItalic', 'Franklin Gothic';
+    font-size: 100px;
+    padding: 20px;
+    padding-bottom: 50px;
+    padding-top: 50px;
+}
+
 .page_title {
     margin-left: 20px;
     padding-top: 20px;

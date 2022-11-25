@@ -22,11 +22,13 @@ def index():
     # requests client's top tracks and lists them out w/ link
     # can change time_range param to short_term (past 4 weeks) or middle_term (default, past 6 months)
     # ex: results = sp.current_user_top_tracks(time_range= "short_term")
-    results = sp.current_user_top_tracks(time_range= "short_term")
+    short_term_data = sp.current_user_top_tracks(time_range= "short_term")
+    medium_term_data = sp.current_user_top_tracks()
+    long_term_data = sp.current_user_top_tracks(time_range= "long_term")
     
     # flask passes in track data in format of a grid: as a list of lists, with each list having a dict of 4 tracks in it (refer to helpers.py for more details)
 
-    return render_template("index.html", track_data = get_track_grid(results)) # don't need to specify that index.html is in templates folder as render_templates automatically assumes its in there
+    return render_template("index.html", short_term_tracks = get_track_grid(short_term_data), medium_term_tracks = get_track_grid(medium_term_data), long_term_tracks = get_track_grid(long_term_data)) # don't need to specify that index.html is in templates folder as render_templates automatically assumes its in there
 
 
 
