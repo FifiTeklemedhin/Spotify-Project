@@ -1,4 +1,5 @@
 # Issues
+* ask if alright to define a login_required flag using this code exactly: https://pythonprogramming.net/decorator-wrappers-flask-tutorial-login-required/
 ## Styles
 - `styles.css` won't style body tag, assigned it a class in `layout.html` to get around it
 - `styles.css` `spotify-bookitalic` does not work
