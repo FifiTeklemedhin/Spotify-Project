@@ -47,20 +47,26 @@ def analyze():
     # ex usage: current_user_top_artists(limit=20, offset=0, time_range='medium_term'), "short_term" is default value for time_range param
 
     short_term_artists = sp_obj.current_user_top_artists(limit=20, offset=0, time_range='medium_term')
-    return render_template("analyze.html", short_term_tracks = get_track_grid(short_term_data), medium_term_tracks = get_track_grid(medium_term_data), long_term_tracks = get_track_grid(long_term_data)) # don't need to specify that index.html is in templates folder as render_templates automatically assumes its in there
+    return render_template("analysis.html") # don't need to specify that index.html is in templates folder as render_templates automatically assumes its in there
 
 
-# TODO
+# TODO: authorize other users
 @app.route("/login")
 def login():
-    return 0
-
-
-# TODO: guessing game
-
-# TODO: authorize users
+    return render_template("login.html")
 
 # TODO: reccomendations
+@app.route("/recommendations")
+def reccomend():
+    return render_template("recommendations.html")
+
+# TODO: guessing game
+@app.route("/game")
+def guessing_game():
+    return render_template("game.html")
+
+
+
 
 #   first analyze info about user, then put those analyzations as seeds into reccomendations function
 
