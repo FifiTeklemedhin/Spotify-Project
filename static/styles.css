@@ -124,9 +124,15 @@ h2 {
     height: auto;
 }
 
-.track-link {
+.artist-photo {
+    width: 200px;
+    height: auto;
+}
+
+.track-link, .artist-link {
     color: #1eb954;
 }
+
 .multi-carousel-item {
     width: 100px;
     height: auto;

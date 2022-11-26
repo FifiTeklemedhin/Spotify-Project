@@ -4,7 +4,7 @@
 
 ## Analysis
 - analyze following info
-    - [] artists
+    - [] artists: pass in id
     - [] genre
     - [] tracks
     - [] danceability

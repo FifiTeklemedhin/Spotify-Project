@@ -31,7 +31,7 @@ def index():
     # requests client's top tracks and lists them out w/ link
     # can change time_range param to short_term (past 4 weeks) or middle_term (default, past 6 months)
     # ex: results = sp_obj.current_user_top_tracks(time_range= "short_term")
-    short_term_data =  sp_obj.current_user_top_tracks(time_range= "short_term")
+    short_term_data =  sp_obj.current_user_top_tracks(time_range= "short_term") # refer to docs/sample_top_tracks.json for sample output
     medium_term_data = sp_obj.current_user_top_tracks()
     long_term_data = sp_obj.current_user_top_tracks(time_range= "long_term")
     
@@ -46,8 +46,17 @@ def analyze():
 
     # ex usage: current_user_top_artists(limit=20, offset=0, time_range='medium_term'), "short_term" is default value for time_range param
 
-    short_term_artists = sp_obj.current_user_top_artists(limit=20, offset=0, time_range='medium_term')
-    return render_template("analysis.html") # don't need to specify that index.html is in templates folder as render_templates automatically assumes its in there
+    short_term_artists = sp_obj.current_user_top_artists(limit=4, offset=0)
+    medium_term_artists = sp_obj.current_user_top_artists(limit=4, offset=0, time_range='medium_term') #refer to docs/sample_top_artists.json for sample output
+    long_term_artists = sp_obj.current_user_top_artists(limit=4, offset=0, time_range='long_term')
+    top_artists = {"short_term": short_term_artists, "medium_term": medium_term_artists, "long_term": long_term_artists}
+
+
+    
+    for idx, artist in enumerate(long_term_artists['items']): 
+        print("{}\n\n".format(artist))
+
+    return render_template("analysis.html", top_artists = top_artists) # don't need to specify that index.html is in templates folder as render_templates automatically assumes its in there
 
 
 # TODO: authorize other users
