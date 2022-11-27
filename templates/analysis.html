@@ -10,12 +10,11 @@ Analyzing Data
 {% block main%}
 
 <h1>Top Artists</h1>
+
+
+
+<!-- top artists in the short term  -->
 <h2>Short Term</h2>
-
-
-<!-- artist["images"][1]["url"] -->
-
-
 
 <div id="track_image_grid" class="container text-center">
     <div class="row">
@@ -33,6 +32,48 @@ Analyzing Data
     </div>
 </div>
 </div>
+
+<!-- top artists in the medium term  -->
+<h2>Medium Term</h2>
+
+<div id="track_image_grid" class="container text-center">
+    <div class="row">
+        {% for artist in top_artists["medium_term"]["items"]%}
+          <div class="col track_grid_div">
+            <img class= "album-cover" src="{{artist["images"][1]["url"]}}" class="img-fluid"
+                alt="{{artist["name"]}}">
+           <br>
+                <a class="track-link"
+                href="{{artist["href"]}}">{{artist["name"]}}</a><br /><br>
+        </div>
+        
+      
+        {% endfor %}
+    </div>
+</div>
+</div>
+
+
+<!-- top artists in the long term  -->
+<h2>Long Term</h2>
+
+<div id="track_image_grid" class="container text-center">
+    <div class="row">
+        {% for artist in top_artists["long_term"]["items"]%}
+          <div class="col track_grid_div">
+            <img class= "album-cover" src="{{artist["images"][1]["url"]}}" class="img-fluid"
+                alt="{{artist["name"]}}">
+           <br>
+                <a class="track-link"
+                href="{{artist["href"]}}">{{artist["name"]}}</a><br /><br>
+        </div>
+        
+      
+        {% endfor %}
+    </div>
+</div>
+</div>
+
 
 
 {% endblock %}

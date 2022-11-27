@@ -46,7 +46,7 @@ def analyze():
 
     # ex usage: current_user_top_artists(limit=20, offset=0, time_range='medium_term'), "short_term" is default value for time_range param
 
-    short_term_artists = sp_obj.current_user_top_artists(limit=4, offset=0)
+    short_term_artists = sp_obj.current_user_top_artists(limit=4, offset=0, time_range='short_term')
     medium_term_artists = sp_obj.current_user_top_artists(limit=4, offset=0, time_range='medium_term') #refer to docs/sample_top_artists.json for sample output
     long_term_artists = sp_obj.current_user_top_artists(limit=4, offset=0, time_range='long_term')
     top_artists = {"short_term": short_term_artists, "medium_term": medium_term_artists, "long_term": long_term_artists}
