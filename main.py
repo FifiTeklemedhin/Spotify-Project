@@ -31,9 +31,9 @@ def index():
     # requests client's top tracks and lists them out w/ link
     # can change time_range param to short_term (past 4 weeks) or middle_term (default, past 6 months)
     # ex: results = sp_obj.current_user_top_tracks(time_range= "short_term")
-    short_term_data =  sp_obj.current_user_top_tracks(time_range= "short_term") # refer to docs/sample_top_tracks.json for sample output
-    medium_term_data = sp_obj.current_user_top_tracks()
-    long_term_data = sp_obj.current_user_top_tracks(time_range= "long_term")
+    short_term_data =  sp_obj.current_user_top_tracks(limit = 8, time_range= "short_term") # refer to docs/sample_top_tracks.json for sample output
+    medium_term_data = sp_obj.current_user_top_tracks(limit = 8)
+    long_term_data = sp_obj.current_user_top_tracks(limit = 8, time_range= "long_term")
     
     # flask passes in track data in format of a grid: as a list of lists, with each list having a dict of 4 tracks in it (refer to helpers.py for more details)
 

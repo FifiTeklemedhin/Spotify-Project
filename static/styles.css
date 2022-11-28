@@ -91,22 +91,27 @@
 }
 
 
+/* Modify the background color */
+.navbar-custom {
+	background-color:ç; 
+    font-family:'Spotify-Light';
+}
 
 
 
 .body {
-    background-color: #141414;
-    color: #cbcbcb; /*text color*/
+    background-color: #FFE5B4/*#141414;*/
+    /* text-color: #cbcbcb; text color */
 }
 
 h1 {
-    color: #1eb954;
+    color:  rgb(249, 97, 122)   /*#1eb954*/;
     font-family:'Spotify-Bold', 'Franklin Gothic';
     font-size: 40px; /* not working */
 }
 
 h2 {
-    color: #cbcccc;
+    color: rgb(249, 108, 108)  /*#ff8ea1*/;  /*#cbcccc; */
     font-family:'Spotify-BoldItalic', 'Franklin Gothic';
     font-size: 100px;
     padding: 20px;
@@ -129,9 +134,15 @@ h2 {
     height: auto;
 }
 
-.track-link, .artist-link {
-    color: #1eb954;
+.link {
+    color: rgb(254, 138, 171) ;
+    text-decoration: underline;
 }
+.link a:visited {
+    color: #1eb954; 
+    text-decoration: none;
+}
+
 
 .multi-carousel-item {
     width: 100px;
@@ -140,6 +151,9 @@ h2 {
 
 
 .track_grid_div {
-    width: 300px;
-    height: auto;
+    
+    margin: 30px;
+    padding-top: 40px;
+
+    background-color: #fad99b;
 }
