@@ -116,7 +116,7 @@ h1 {
 }
 
 h2 {
-    color: #ffaea5;/*#ff8ea1*/;  /*#cbcccc; */
+    color: #ffa8a7;/*#ff8ea1*/;  /*#cbcccc; */
     font-family:'Kangmas', 'Spotify-BoldItalic', 'Franklin Gothic';
     font-size: 100px;
     padding: 20px;
@@ -139,12 +139,13 @@ h2 {
     height: auto;
 }
 
-.link {
-    margin-top: 10px;
+.track_link_div {
+    margin: 30px;
 }
 .link, .nav-item {
     color: #b8cdc4 ;
     text-decoration: none;
+    font-family: 'Spotify-Light';
 }
 .link a:visited {
     color: #1eb954; 
@@ -159,7 +160,7 @@ h2 {
 
 
 .track_grid_div {
-    
+    height: 350px;
     margin: 30px;
     padding-top: 40px;
 
