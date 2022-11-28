@@ -9,6 +9,19 @@ Recommendations
 
 {% block main%}
 
+<div class="track_image_grid" class="container text-center">
+    <div class="row">
+        {% for track in recommendations["tracks"]%}
+        <div class="col track_grid_div">
+            <img class="album-cover" src="{{track["album"]["images"][1]["url"]}}" class="img-fluid" alt="{{track["name"]}}">
+            <br>
+            <a class="link" href="{{track["href"]}}">{{track["name"]}}</a> <br><br>
+        </div>
 
+
+        {% endfor %}
+    </div>
+</div>
+</div>
 
 {% endblock %}

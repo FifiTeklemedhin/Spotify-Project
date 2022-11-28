@@ -70,10 +70,13 @@ def recommend():
     
     random_artists = [short_term_top_artists["items"][random.randint(0, limit - 1)]["id"],  medium_term_top_artists["items"][random.randint(0, limit - 1)]["id"], medium_term_top_artists["items"][random.randint(0, limit - 1)]["id"]]
     
-    recommendations = sp_obj.recommendations(seed_artists= random_artists)
+    recommendations = sp_obj.recommendations(seed_artists= random_artists, limit= limit)
 
-    for recc in recommendations:
-        print("{}\n".format(recc))
+    # for recc in recommendations:
+
+    for track in recommendations["tracks"]:
+        print(track["album"]["images"][0]["url"])
+        print("\n")
     
 
     return render_template("recommendations.html", recommendations = recommendations)
