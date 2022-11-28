@@ -1,5 +1,15 @@
 
+from asyncore import write
+from email.mime import image
+import spotipy
+from spotipy.oauth2 import SpotifyOAuth
+import credentials
+import sys
 import math
+
+def get_top_artists(sp_obj, limit, offset, time_range):
+
+    return sp_obj.current_user_top_artists(limit= limit, offset= offset, time_range= time_range)
 
 def get_track_grid(results):
 

@@ -5,6 +5,7 @@ from spotipy.oauth2 import SpotifyOAuth
 import credentials
 import sys
 from helpers import *
+import random
 
 
 from flask import Flask
@@ -44,18 +45,10 @@ def index():
 #@long_required
 def analyze():
 
-    # ex usage: current_user_top_artists(limit=20, offset=0, time_range='medium_term'), "short_term" is default value for time_range param
+    limit = 4
+    offset = 0
 
-    short_term_artists = sp_obj.current_user_top_artists(limit=4, offset=0, time_range='short_term')
-    medium_term_artists = sp_obj.current_user_top_artists(limit=4, offset=0, time_range='medium_term') #refer to docs/sample_top_artists.json for sample output
-    long_term_artists = sp_obj.current_user_top_artists(limit=4, offset=0, time_range='long_term')
-    top_artists = {"short_term": short_term_artists, "medium_term": medium_term_artists, "long_term": long_term_artists}
-
-
-    
-    for idx, artist in enumerate(long_term_artists['items']): 
-        print("{}\n\n".format(artist))
-
+    top_artists = {"short_term": get_top_artists(sp_obj, limit = limit, offset = offset, term_limit = "short_term"), "medium_term": get_top_artists(sp_obj, limit = limit, offset = offset, term_limit = "medium_term"), "long_term": get_top_artists(sp_obj, limit = limit, offset = offset, term_limit = "long_term")}
     return render_template("analysis.html", top_artists = top_artists) # don't need to specify that index.html is in templates folder as render_templates automatically assumes its in there
 
 
@@ -66,8 +59,24 @@ def login():
 
 # TODO: reccomendations
 @app.route("/recommendations")
-def reccomend():
-    return render_template("recommendations.html")
+def recommend():
+    limit = 4
+    offset = 0
+
+    short_term_top_artists = get_top_artists(sp_obj, limit = limit, offset = offset, time_range = "short_term")
+    medium_term_top_artists = get_top_artists(sp_obj, limit = limit, offset = offset, time_range = "medium_term")
+    long_term_top_artists = get_top_artists(sp_obj, limit = limit, offset = offset, time_range = "long_term")
+
+    
+    random_artists = [short_term_top_artists["items"][random.randint(0, limit - 1)]["id"],  medium_term_top_artists["items"][random.randint(0, limit - 1)]["id"], medium_term_top_artists["items"][random.randint(0, limit - 1)]["id"]]
+    
+    recommendations = sp_obj.recommendations(seed_artists= random_artists)
+
+    for recc in recommendations:
+        print("{}\n".format(recc))
+    
+
+    return render_template("recommendations.html", recommendations = recommendations)
 
 # TODO: guessing game
 @app.route("/game")
