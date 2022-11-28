@@ -102,6 +102,23 @@
     font-family:'Spotify-Light';
 }
 
+.navbar-custom {
+    height: 50px;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+.navbar-custom ul {
+    list-style-type: none;
+    text-align: center;
+    position: absolute;
+    display: flex;
+    margin-left: 30%;
+}
+
+.nav-link {
+    display: flex;
+    justify-content: center
+}
 
 
 .body {
@@ -119,9 +136,10 @@ h2 {
     color: #ffa8a7;/*#ff8ea1*/;  /*#cbcccc; */
     font-family:'Kangmas', 'Spotify-BoldItalic', 'Franklin Gothic';
     font-size: 100px;
-    padding: 20px;
-    padding-bottom: 50px;
-    padding-top: 50px;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    padding-right: 20px;
+    padding-left: 20px;
 }
 
 .page_title {
