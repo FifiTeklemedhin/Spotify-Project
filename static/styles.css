@@ -128,6 +128,8 @@
 
 h1 {
     color:  #fc9593  /*#1eb954*/;
+    /* offset-x | offset-y | blur-radius | color */
+    text-shadow: 3px 1px 0px pink;/*#ff8ea1*/;  /*#cbcccc; */
     font-family:'Kangmas', 'Spotify-Bold', 'Franklin Gothic';
     font-size: 40px; /* not working */
 }
