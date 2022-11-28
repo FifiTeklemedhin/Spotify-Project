@@ -89,6 +89,11 @@
     font-family: "Spotify-MediumItalic";
     src: url("Gotham-Spotify-Font/GothamMediumItalic.ttf") format("truetype");    
 }
+@font-face {
+
+    font-family: "Kangmas";
+    src: url("kangmas-demo/Kangmas DEMO.ttf") format("truetype");    
+}
 
 
 /* Modify the background color */
@@ -106,13 +111,13 @@
 
 h1 {
     color:  rgb(249, 97, 122)   /*#1eb954*/;
-    font-family:'Spotify-Bold', 'Franklin Gothic';
+    font-family:'Kangmas', 'Spotify-Bold', 'Franklin Gothic';
     font-size: 40px; /* not working */
 }
 
 h2 {
     color: rgb(249, 108, 108)  /*#ff8ea1*/;  /*#cbcccc; */
-    font-family:'Spotify-BoldItalic', 'Franklin Gothic';
+    font-family:'Kangmas', 'Spotify-BoldItalic', 'Franklin Gothic';
     font-size: 100px;
     padding: 20px;
     padding-bottom: 50px;
@@ -135,8 +140,11 @@ h2 {
 }
 
 .link {
+    margin-top: 10px;
+}
+.link, .nav-item {
     color: rgb(254, 138, 171) ;
-    text-decoration: underline;
+    text-decoration: none;
 }
 .link a:visited {
     color: #1eb954; 

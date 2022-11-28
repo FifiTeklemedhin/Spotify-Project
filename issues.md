@@ -8,3 +8,6 @@
 
 ## History page
 - printing grids for short, medium, and long term tracks is v repetitive code: unsure on how to make a function for them
+
+## Reccomendations page
+- links not working for albums; I think I have correct ones they just won't work through the API, even if I click on them manually on json

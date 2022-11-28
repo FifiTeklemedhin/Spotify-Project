@@ -48,7 +48,7 @@ def analyze():
     limit = 4
     offset = 0
 
-    top_artists = {"short_term": get_top_artists(sp_obj, limit = limit, offset = offset, term_limit = "short_term"), "medium_term": get_top_artists(sp_obj, limit = limit, offset = offset, term_limit = "medium_term"), "long_term": get_top_artists(sp_obj, limit = limit, offset = offset, term_limit = "long_term")}
+    top_artists = {"short_term": get_top_artists(sp_obj, limit = limit, offset = offset, time_range = "short_term"), "medium_term": get_top_artists(sp_obj, limit = limit, offset = offset, time_range = "medium_term"), "long_term": get_top_artists(sp_obj, limit = limit, offset = offset, time_range = "long_term")}
     return render_template("analysis.html", top_artists = top_artists) # don't need to specify that index.html is in templates folder as render_templates automatically assumes its in there
 
 
