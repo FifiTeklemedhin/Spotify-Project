@@ -98,25 +98,25 @@
 
 /* Modify the background color */
 .navbar-custom {
-	background-color:ç; 
+	background-color: #fff1e0; 
     font-family:'Spotify-Light';
 }
 
 
 
 .body {
-    background-color: #FFE5B4/*#141414;*/
+    background-color: #FFFBF0/*#141414;*/
     /* text-color: #cbcbcb; text color */
 }
 
 h1 {
-    color:  rgb(249, 97, 122)   /*#1eb954*/;
+    color:  #fc9593  /*#1eb954*/;
     font-family:'Kangmas', 'Spotify-Bold', 'Franklin Gothic';
     font-size: 40px; /* not working */
 }
 
 h2 {
-    color: rgb(249, 108, 108)  /*#ff8ea1*/;  /*#cbcccc; */
+    color: #ffaea5;/*#ff8ea1*/;  /*#cbcccc; */
     font-family:'Kangmas', 'Spotify-BoldItalic', 'Franklin Gothic';
     font-size: 100px;
     padding: 20px;
@@ -143,7 +143,7 @@ h2 {
     margin-top: 10px;
 }
 .link, .nav-item {
-    color: rgb(254, 138, 171) ;
+    color: #b8cdc4 ;
     text-decoration: none;
 }
 .link a:visited {
@@ -163,5 +163,5 @@ h2 {
     margin: 30px;
     padding-top: 40px;
 
-    background-color: #fad99b;
+    background-color: #fff1e0;
 }
