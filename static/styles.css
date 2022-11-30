@@ -120,7 +120,11 @@
     justify-content: center
 }
 
-
+.logo {
+    justify-items: center;
+    max-width: 100px;
+    max-height: auto;
+}
 .body {
     background-color: #FFFBF0/*#141414;*/
     /* text-color: #cbcbcb; text color */
@@ -131,13 +135,13 @@ h1 {
     /* offset-x | offset-y | blur-radius | color */
     text-shadow: 3px 1px 0px pink;/*#ff8ea1*/;  /*#cbcccc; */
     font-family:'Kangmas', 'Spotify-Bold', 'Franklin Gothic';
-    font-size: 40px; /* not working */
+    font-size: 70px; /* not working */
 }
 
 h2 {
     color: #ffa8a7;/*#ff8ea1*/;  /*#cbcccc; */
     font-family:'Kangmas', 'Spotify-BoldItalic', 'Franklin Gothic';
-    font-size: 100px;
+    font-size: 50px;
     padding-top: 10px;
     padding-bottom: 20px;
     padding-right: 20px;
