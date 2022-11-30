@@ -7,7 +7,6 @@ import sys
 from helpers import *
 import random
 
-
 from flask import Flask
 from flask import Flask, flash, redirect, render_template, request, session
 app = Flask(__name__)
@@ -58,28 +57,49 @@ def login():
     return render_template("login.html")
 
 # TODO: reccomendations
-@app.route("/recommendations")
+@app.route("/recommendations", methods=["GET", "POST"])
 def recommend():
-    limit = 4
-    offset = 0
 
-    short_term_top_artists = get_top_artists(sp_obj, limit = limit, offset = offset, time_range = "short_term")
-    medium_term_top_artists = get_top_artists(sp_obj, limit = limit, offset = offset, time_range = "medium_term")
-    long_term_top_artists = get_top_artists(sp_obj, limit = limit, offset = offset, time_range = "long_term")
+    if request.method == "POST":
+        limit = 4
+        offset = 0
+        recomendations = {}
+
+        if request.form.get('top_artists') == 'Top artists':
+            recommendations = get_recs_from_artists(sp_obj, limit=limit, offset=offset)
+            return render_template("recommendations.html", recommendations = recommendations)
+        #TODO
+        if request.form.get('top_tracks') == 'Top tracks':
+            return render_template("recommendations.html", recommendations = recommendations)
+
+        #TODO  
+        if request.form.get('random_genres') == 'Random genres':
+            genres = sp_obj.recommendation_genre_seeds()["genres"]
+            random_genres = [genres[random.randint(0, len(genres) - 1)] for i in range(5)] # creates a list of 5 random genres from the available genres. 5 seed values is max
+            recommendations = sp_obj.recommendations(seed_genres=random_genres, limit=limit)
+            return render_template("recommendations.html", recommendations = recommendations)
+
+        #TODO
+        if request.form.get('random_danceability' == 'Random danceability'):
+            return render_template("recommendations.html", reccomendations = reccomendations)
+         
+        return render_template("recommendations.html", recommendations = recomendations)
+
+    else:
+        limit = 4
+        offset = 0
+
+        short_term_top_artists = get_top_artists(sp_obj, limit = limit, offset = offset, time_range = "short_term")
+        medium_term_top_artists = get_top_artists(sp_obj, limit = limit, offset = offset, time_range = "medium_term")
+        long_term_top_artists = get_top_artists(sp_obj, limit = limit, offset = offset, time_range = "long_term")
 
     
-    random_artists = [short_term_top_artists["items"][random.randint(0, limit - 1)]["id"],  medium_term_top_artists["items"][random.randint(0, limit - 1)]["id"], medium_term_top_artists["items"][random.randint(0, limit - 1)]["id"]]
+        random_artists = [short_term_top_artists["items"][random.randint(0, limit - 1)]["id"],  medium_term_top_artists["items"][random.randint(0, limit - 1)]["id"], medium_term_top_artists["items"][random.randint(0, limit - 1)]["id"]]
     
-    recommendations = sp_obj.recommendations(seed_artists= random_artists, limit= limit)
+        recommendations = sp_obj.recommendations(seed_artists= random_artists, limit= limit)
 
-    # for recc in recommendations:
 
-    for track in recommendations["tracks"]:
-        print(track["album"]["images"][0]["url"])
-        print("\n")
-    
-
-    return render_template("recommendations.html", recommendations = recommendations)
+        return render_template("recommendations.html", recommendations = recommendations)
 
 # TODO: guessing game
 @app.route("/game")

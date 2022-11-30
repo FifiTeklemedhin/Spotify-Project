@@ -6,6 +6,21 @@ from spotipy.oauth2 import SpotifyOAuth
 import credentials
 import sys
 import math
+import random
+
+def get_recs_from_random_genres(sp_obj, limit, offset):
+    g
+
+def get_recs_from_artists(sp_obj, limit, offset):
+    short_term_top_artists = get_top_artists(sp_obj, limit = limit, offset = offset, time_range = "short_term")
+    medium_term_top_artists = get_top_artists(sp_obj, limit = limit, offset = offset, time_range = "medium_term")
+    long_term_top_artists = get_top_artists(sp_obj, limit = limit, offset = offset, time_range = "long_term")
+
+    # selects a random short, medium, and long term artist to be part of the seed artists
+    random_artists = [short_term_top_artists["items"][random.randint(0, limit - 1)]["id"],  medium_term_top_artists["items"][random.randint(0, limit - 1)]["id"], medium_term_top_artists["items"][random.randint(0, limit - 1)]["id"]]
+        
+    return sp_obj.recommendations(seed_artists= random_artists, limit= limit)
+
 
 def get_top_artists(sp_obj, limit, offset, time_range):
 
