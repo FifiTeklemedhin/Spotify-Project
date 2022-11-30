@@ -8,8 +8,10 @@ import sys
 import math
 import random
 
-def get_recs_from_random_genres(sp_obj, limit, offset):
-    g
+def get_recs_from_random_genres(sp_obj, limit):
+    genres = sp_obj.recommendation_genre_seeds()["genres"]
+    random_genres = [genres[random.randint(0, len(genres) - 1)] for i in range(5)] # creates a list of 5 random genres from the available genres. 5 seed values is max
+    return sp_obj.recommendations(seed_genres=random_genres, limit=limit)
 
 def get_recs_from_artists(sp_obj, limit, offset):
     short_term_top_artists = get_top_artists(sp_obj, limit = limit, offset = offset, time_range = "short_term")

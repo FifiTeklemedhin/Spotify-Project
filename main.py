@@ -74,9 +74,7 @@ def recommend():
 
         #TODO  
         if request.form.get('random_genres') == 'Random genres':
-            genres = sp_obj.recommendation_genre_seeds()["genres"]
-            random_genres = [genres[random.randint(0, len(genres) - 1)] for i in range(5)] # creates a list of 5 random genres from the available genres. 5 seed values is max
-            recommendations = sp_obj.recommendations(seed_genres=random_genres, limit=limit)
+            recommendations = get_recs_from_random_genres(sp_obj, limit)
             return render_template("recommendations.html", recommendations = recommendations)
 
         #TODO
