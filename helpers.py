@@ -8,6 +8,19 @@ import sys
 import math
 import random
 
+def get_recs_from_random_danceability(sp_obj, limit, offset):
+     # gets total of 5 seeds (max allowed by spotify): two top artists and two top tracks over the past few months, and 1 random genre
+    top_artists = sp_obj.current_user_top_artists(limit = 2, offset=offset, time_range="medium_term")
+    top_artist_ids = [artist["id"] for artist in top_artists["items"]] # gets ids of artists
+
+    top_tracks = sp_obj.current_user_top_tracks(limit = 2, offset=offset, time_range="medium_term")
+    top_track_ids = [track["id"] for track in top_tracks["items"]] # gets ids of tracks
+    
+    genres = sp_obj.recommendation_genre_seeds()["genres"]
+    random_genre = [genres[random.randint(0, len(genres) - 1)]] #1 random genre from the available genres, must be passed in as an list
+
+    return sp_obj.recommendations(limit = limit, seed_artists = top_artist_ids, seed_tracks = top_track_ids, seed_genres = random_genre, danceability= random.randint(0,1))
+
 def get_recs_from_tracks(sp_obj, limit, offset):
     # gets maximum number of top artists (100) for increased randomness
     short_term_top_tracks = sp_obj.current_user_top_tracks(limit = 100, offset=offset, time_range="short_term")
