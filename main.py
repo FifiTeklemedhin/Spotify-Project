@@ -68,11 +68,11 @@ def recommend():
         if request.form.get('top_artists') == 'Top artists':
             recommendations = get_recs_from_artists(sp_obj, limit=limit, offset=offset)
             return render_template("recommendations.html", recommendations = recommendations)
-        #TODO
+            
         if request.form.get('top_tracks') == 'Top tracks':
+            recommendations = get_recs_from_tracks(sp_obj, limit, offset)
             return render_template("recommendations.html", recommendations = recommendations)
-
-        #TODO  
+ 
         if request.form.get('random_genres') == 'Random genres':
             recommendations = get_recs_from_random_genres(sp_obj, limit)
             return render_template("recommendations.html", recommendations = recommendations)

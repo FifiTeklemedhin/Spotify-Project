@@ -8,19 +8,35 @@ import sys
 import math
 import random
 
+def get_recs_from_tracks(sp_obj, limit, offset):
+    # gets maximum number of top artists (100) for increased randomness
+    short_term_top_tracks = sp_obj.current_user_top_tracks(limit = 100, offset=offset, time_range="short_term")
+    medium_term_top_tracks = sp_obj.current_user_top_tracks(limit = 100, offset=offset, time_range="medium_term")
+    long_term_top_tracks = sp_obj.current_user_top_tracks(limit = 100, offset=offset, time_range="long_term")
+
+    num_tracks = len(short_term_top_tracks)
+
+    # selects a random short, medium, and long term track to be part of the seed tracks, medium tracks get 3 spots since users probably enjoy the tracks but aren't sick of them
+    random_tracks = [short_term_top_tracks["items"][random.randint(0,  num_tracks-1)]["id"], medium_term_top_tracks["items"][random.randint(0, num_tracks - 1)]["id"] , medium_term_top_tracks["items"][random.randint(0, num_tracks - 1)]["id"], long_term_top_tracks["items"][random.randint(0, num_tracks - 1)]["id"], long_term_top_tracks["items"][random.randint(0, num_tracks - 1)]["id"]]
+    
+    return sp_obj.recommendations(seed_tracks= random_tracks, limit=limit)
+
 def get_recs_from_random_genres(sp_obj, limit):
     genres = sp_obj.recommendation_genre_seeds()["genres"]
     random_genres = [genres[random.randint(0, len(genres) - 1)] for i in range(5)] # creates a list of 5 random genres from the available genres. 5 seed values is max
     return sp_obj.recommendations(seed_genres=random_genres, limit=limit)
 
 def get_recs_from_artists(sp_obj, limit, offset):
-    short_term_top_artists = get_top_artists(sp_obj, limit = limit, offset = offset, time_range = "short_term")
-    medium_term_top_artists = get_top_artists(sp_obj, limit = limit, offset = offset, time_range = "medium_term")
-    long_term_top_artists = get_top_artists(sp_obj, limit = limit, offset = offset, time_range = "long_term")
+
+    # gets max number of artists for increased randomness
+    short_term_top_artists = get_top_artists(sp_obj, limit = 100, offset = offset, time_range = "short_term")
+    medium_term_top_artists = get_top_artists(sp_obj, limit = 100, offset = offset, time_range = "medium_term")
+    long_term_top_artists = get_top_artists(sp_obj, limit = 100, offset = offset, time_range = "long_term")
+
+    num_artists = len(short_term_top_artists)
 
     # selects a random short, medium, and long term artist to be part of the seed artists
-    random_artists = [short_term_top_artists["items"][random.randint(0, limit - 1)]["id"],  medium_term_top_artists["items"][random.randint(0, limit - 1)]["id"], medium_term_top_artists["items"][random.randint(0, limit - 1)]["id"]]
-        
+    random_artists = [short_term_top_artists["items"][random.randint(0,  num_artists-1)]["id"],  medium_term_top_artists["items"][random.randint(0, num_artists - 1)]["id"], medium_term_top_artists["items"][random.randint(0, num_artists - 1)]["id"]]
     return sp_obj.recommendations(seed_artists= random_artists, limit= limit)
 
 
