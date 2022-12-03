@@ -33,9 +33,23 @@
         <li class="nav-item active">
           <a style="color: #ffa8a7" class="nav-link" href="recommendations">Recommendations</a>
         </li>
-        <li class="nav-item active">
-          <a style="color: #ffa8a7" class="nav-link" href="analysis">Analysis</a>
+   ˆ
+
+        <li class="nav-item dropdown disabled">
+          <a style="color: #ffa8a7" class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Analysis
+          </a>
+          <form action="/analysis" method="post">
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="width: 380px;" >
+              <li><input style="color: #ffa8a7; margin-left: 5px;" type="submit" class="dropdown-item" href="analysis" name="short_term" value="short term"></li>
+              <li><input style="color: #ffa8a7" type="submit" class="dropdown-item" href="analysis" name="medium_term" value="medium term"></li>
+              <li><input style="color: #ffa8a7; margin-right: 5px;" type="submit" class="dropdown-item" href="analysis" name="long_term" value="long term"></li>
+            </ul>
+          </form>
+         
         </li>
+
+
         <li class="nav-item active">
             <a style="color: #ffa8a7" class="nav-link" href="game">Guessing Game</a>
           </li>

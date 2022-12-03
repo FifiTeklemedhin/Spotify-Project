@@ -40,9 +40,11 @@ def index():
     return render_template("index.html", short_term_tracks = get_track_grid(short_term_data), medium_term_tracks = get_track_grid(medium_term_data), long_term_tracks = get_track_grid(long_term_data)) # don't need to specify that index.html is in templates folder as render_templates automatically assumes its in there
 
 
-@app.route("/analysis")
+@app.route("/analysis", methods=["GET", "POST"])
 #@long_required
 def analyze():
+    if request.method == "POST":
+        print("POOOOOSSSSTTTT")
 
     limit = 4
     offset = 0
