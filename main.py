@@ -40,17 +40,27 @@ def index():
     return render_template("index.html", short_term_tracks = get_track_grid(short_term_data), medium_term_tracks = get_track_grid(medium_term_data), long_term_tracks = get_track_grid(long_term_data)) # don't need to specify that index.html is in templates folder as render_templates automatically assumes its in there
 
 
-@app.route("/analysis", methods=["GET", "POST"])
+@app.route("/analysis", methods=["POST"])
 #@long_required
 def analyze():
-    if request.method == "POST":
-        print("POOOOOSSSSTTTT")
-
     limit = 4
     offset = 0
 
-    top_artists = {"short_term": get_top_artists(sp_obj, limit = limit, offset = offset, time_range = "short_term"), "medium_term": get_top_artists(sp_obj, limit = limit, offset = offset, time_range = "medium_term"), "long_term": get_top_artists(sp_obj, limit = limit, offset = offset, time_range = "long_term")}
-    return render_template("analysis.html", top_artists = top_artists) # don't need to specify that index.html is in templates folder as render_templates automatically assumes its in there
+    print("REQUEST FORM: {}".format(request.form))
+    if request.form.get('short_term') == 'short term':
+        short_term_top_artists = get_top_artists(sp_obj, limit = limit, offset = offset, time_range="short_term")
+        return render_template("analysis.html", top_artists = short_term_top_artists, term = "short term")
+
+    if request.form.get('medium_term') == 'medium term':
+        medium_term_top_artists = get_top_artists(sp_obj, limit = limit, offset = offset, time_range="medium_term")
+        return render_template("analysis.html", top_artists = medium_term_top_artists, term = "medium term")
+    
+    else:
+        long_term_top_artists = get_top_artists(sp_obj, limit = limit, offset = offset, time_range="long_term")
+        return render_template("analysis.html", top_artists = long_term_top_artists, term = "long term")
+
+    # top_artists = {"short_term": get_top_artists(sp_obj, limit = limit, offset = offset, time_range = "short_term"), "medium_term": get_top_artists(sp_obj, limit = limit, offset = offset, time_range = "medium_term"), "long_term": get_top_artists(sp_obj, limit = limit, offset = offset, time_range = "long_term")}
+    # return render_template("analysis.html", top_artists = top_artists) # don't need to specify that index.html is in templates folder as render_templates automatically assumes its in there
 
 
 # TODO: authorize other users
