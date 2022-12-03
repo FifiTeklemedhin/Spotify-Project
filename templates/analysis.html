@@ -9,6 +9,30 @@ A n a l y z i n g  D a t a
 
 {% block main%}
 
+<div class="track_image_grid" class="container text-center">
+    <form action="/recommendations" method="post" >
+        <div class="row" style="margin-bottom: 40px; margin-top: 20px;">
+            <div class="col button_div">
+                <input type="submit" class="recommendation_button" value = "Top artists" name="top_artists"> <!--referenced this site to create inputs rather than buttons for form https://predictivehacks.com/?all-tips=how-to-add-action-buttons-in-flask-->
+            </div>
+            <div class="col button_div">
+                <input type="submit" class="recommendation_input" value ="Top tracks" name="top_tracks">
+            </div>
+            <div class="col button_div">
+                <input type="submit" class="recommendation_input" value="Random genres" name="random_genres">
+            </div>
+            <div class="col button_div">
+                <input type="submit" class="recommendation_input" value="Random danceability" name="random_danceability">
+            </div>
+        </div>
+    </form>
+   
+</div>
+</div>
+
+
+
+
 <h1>Top Artists</h1>
 
 
