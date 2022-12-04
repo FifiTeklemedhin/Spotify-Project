@@ -143,6 +143,13 @@ h2 {
     padding-left: 20px;
 }
 
+h3 {
+    color: #b8cdc4;
+    text-shadow: 3px 1px 0px #fff1e0;
+    font-family:'Kangmas', 'Spotify-BoldItalic', 'Franklin Gothic';
+
+
+}
 .page_title {
     margin-top: 0px;
     text-align: center;
