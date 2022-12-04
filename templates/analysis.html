@@ -9,63 +9,37 @@ T o p  A r t i s t s
 
 {% block main%}
 
-<div class="container" style="padding: 0px; margin: 0px;">
-  <div class="row">
-    <div class="col analysis_main_col" style="width:30%"> <!-- the first vertical half of the page-->
-      <h2>{{term}}</h2>
-  
-        <div class="container text-center">
-          {% for artist in top_artists["items"]%}
-          <div class="row">
-            <div class="col">
-              <div class="artist_grid_div">
-                <img class="album-cover" src="{{artist["images"][1]["url"]}}" class="img-fluid" alt="{{artist["
-                  name"]}}">
-                <br>
-                <a class="link" href="{{artist["href"]}}">{{artist["name"]}}</a> <br><br>
-              </div>
-            </div>
-            <div class="col">
-              <h3>Artist name</h3>
-              <p>eorihdsz;fA : ; wesdklf; cDOS>NFHK>HFE:OYO:SDHFLknfcn/kx</p>
-              
-            </div>
-            
-          </div>
-  
-          {% endfor %}
-    </div>
-  
-  
-    <div class="col analysis_main_col"> <!-- the second vertical half of the page-->
-      <h2>{{term}}</h2>
-  
-        <div class="container text-center">
-          {% for artist in top_artists["items"]%}
-          <div class="row">
-            <div class="col">
-              <div class="artist_grid_div">
-                <img class="album-cover" src="{{artist["images"][1]["url"]}}" class="img-fluid" alt="{{artist["
-                  name"]}}">
-                <br>
-                <a class="link" href="{{artist["href"]}}">{{artist["name"]}}</a> <br><br>
-              </div>
-            </div>
-            <div class="col">
-              <h3>Artist name</h3>
-              <p>eorihdsz;fA : ; wesdklf; cDOS>NFHK>HFE:OYO:SDHFLknfcn/kx</p>
-              
-            </div>
-            
-          </div>
-  
-          {% endfor %}
-    </div>
-  
-  
+<div class="container">
+  <div class="col" style="width:50%"> <!-- the first vertical half of the page-->
+    <h2>{{term}}</h2>
 
+      <div class="container text-center">
+        {% for artist in top_artists["items"]%}
+        <div class="row">
+          <div class="col">
+            <div class="artist_grid_div">
+              <img class="album-cover" src="{{artist["images"][1]["url"]}}" class="img-fluid" alt="{{artist["
+                name"]}}">
+              <br>
+              <a class="link" href="{{artist["href"]}}">{{artist["name"]}}</a> <br><br>
+            </div>
+          </div>
+          <div class="col">
+            <h3>Artist name</h3>
+            <p>eorihdsz;fA : ; wesdklf; cDOS>NFHK>HFE:OYO:SDHFLknfcn/kx</p>
+            
+          </div>
+          
+        </div>
+
+        {% endfor %}
   </div>
 
+
+
+  <div class="col"> <!-- the second vertical half of the page-->
+
+  </div>
 
 </div>
 
