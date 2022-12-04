@@ -21,8 +21,10 @@
       aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+    <img style="justify-items: left; max-width: 10%; height: auto; max-height: auto; display: block; margin-left: 30px; margin-right:0px;" src="./static/Logos/Logo 3.png" class="img-fluid logo" alt="logo"> <!--referenced centering from this site: https://www.w3schools.com/howto/howto_css_image_center.asp-->
+
     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0" style="margin-left:23%;">
 
         <li class="nav-item active">
             <a style="color: #ffa8a7" class="nav-link" href="login">Login</a> <!--- hrefs refer to app routes in main.py -->
@@ -58,12 +60,13 @@
     </div>
   </nav>
 
-  <img style=" justify-items: center; max-width: 300px; max-height: auto; display: block; margin-left: auto; margin-right: auto; width: 50%;" src="./static/Logos/Logo 3.png" class="img-fluid logo" alt="logo"> <!--referenced centering from this site: https://www.w3schools.com/howto/howto_css_image_center.asp-->
-
-
-    <h1 class="page_title">
+ 
+    <pre class="title_wrapper">
+      <h1 class="page_title">
         {% block page_title %}{% endblock %}
     </h1>
+    </pre>
+    
     <main class="container-fluid py-5 text-center">
         {% block main %}{% endblock %}
     </main>

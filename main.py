@@ -45,19 +45,18 @@ def index():
 def analyze():
     limit = 4
     offset = 0
-
-    print("REQUEST FORM: {}".format(request.form))
     if request.form.get('short_term') == 'short term':
         short_term_top_artists = get_top_artists(sp_obj, limit = limit, offset = offset, time_range="short_term")
-        return render_template("analysis.html", top_artists = short_term_top_artists, term = "short term")
+        print(short_term_top_artists)
+        return render_template("analysis.html", top_artists = short_term_top_artists, term = "s h o r t  t e r m")
 
     if request.form.get('medium_term') == 'medium term':
         medium_term_top_artists = get_top_artists(sp_obj, limit = limit, offset = offset, time_range="medium_term")
-        return render_template("analysis.html", top_artists = medium_term_top_artists, term = "medium term")
+        return render_template("analysis.html", top_artists = medium_term_top_artists, term = "m e d i u m  t e r m")
     
     else:
         long_term_top_artists = get_top_artists(sp_obj, limit = limit, offset = offset, time_range="long_term")
-        return render_template("analysis.html", top_artists = long_term_top_artists, term = "long term")
+        return render_template("analysis.html", top_artists = long_term_top_artists, term = "l o n g  t e r m")
 
     # top_artists = {"short_term": get_top_artists(sp_obj, limit = limit, offset = offset, time_range = "short_term"), "medium_term": get_top_artists(sp_obj, limit = limit, offset = offset, time_range = "medium_term"), "long_term": get_top_artists(sp_obj, limit = limit, offset = offset, time_range = "long_term")}
     # return render_template("analysis.html", top_artists = top_artists) # don't need to specify that index.html is in templates folder as render_templates automatically assumes its in there

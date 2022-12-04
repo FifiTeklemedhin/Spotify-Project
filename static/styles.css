@@ -103,7 +103,7 @@
 }
 
 .navbar-custom {
-    height: 50px;
+    height: 100px;
     margin-bottom: 20px;
     justify-content: center;
 }
@@ -120,11 +120,6 @@
     justify-content: center
 }
 
-.logo {
-    justify-items: center;
-    max-width: 100px;
-    max-height: auto;
-}
 .body {
     background-color: #FFFBF0/*#141414;*/
     /* text-color: #cbcbcb; text color */
@@ -143,16 +138,22 @@ h2 {
     font-family:'Kangmas', 'Spotify-BoldItalic', 'Franklin Gothic';
     font-size: 50px;
     padding-top: 10px;
-    padding-bottom: 20px;
+    padding-bottom: 30px;
     padding-right: 20px;
     padding-left: 20px;
 }
 
 .page_title {
-    margin-left: 20px;
-    padding-top: 20px;
+    margin-top: 0px;
+    text-align: center;
+    height: 100px;
 }
 
+.title_wrapper {
+    margin: 0px;
+    margin-left: 30px;
+   
+}
 .album-cover {
     width: 200px;
     height: auto;
