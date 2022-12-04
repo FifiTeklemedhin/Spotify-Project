@@ -171,6 +171,7 @@ h2 {
     text-decoration: none;
     font-family: 'Spotify-Light';
 }
+
 .link a:visited {
     color: #1eb954; 
     text-decoration: none;
@@ -187,6 +188,14 @@ h2 {
     height: 350px;
     margin: 30px;
     padding-top: 40px;
-
     background-color: #fff1e0;
 }
+
+.artist_grid_div {
+    height: 300px;
+    width: 40%;
+    margin: 30px;
+    padding-top: 40px;
+    background-color: #fff1e0;
+}
+
