@@ -8,7 +8,7 @@ T o p  A r t i s t s  :  {{term}}
 {% endblock %}
 
 {% block main%}
-
+<p>blurb about how this all works</p>
 <div class="container" style="display:grid">
   <div class="row"> 
     <div class="col-sm"  style=" border-style: dotted; padding-left: 0; padding-right: 0;"> <!-- the first vertical half of the page-->
@@ -28,10 +28,10 @@ T o p  A r t i s t s  :  {{term}}
             <div class="col-sm" style="padding-top:25px;">
               <h3>{{artist["name"]}}</h3>
               <ul style="text-align: left">
-                <li>Popularity: /100</li>
+                <li>Popularity: {{artist["popularity"]}}/100</li>
                 <li>Top Tracks: </li>
                 <li>Your Favorites: </li>
-                <li>Genres: </li>
+                <li>Genres: {{artist["genres"]}}</li>
                 <li>Associated Artists: </li>
               
               </ul>

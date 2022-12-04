@@ -47,8 +47,21 @@ def analyze():
     offset = 0
     if request.form.get('short_term') == 'short term':
         short_term_top_artists = get_top_artists(sp_obj, limit = limit, offset = offset, time_range="short_term")
-        print(short_term_top_artists)
-        return render_template("analysis.html", top_artists = short_term_top_artists, term = "s h o r t  t e r m")
+        short_term_top_tracks = sp_obj.current_user_top_tracks(limit = 100, offset = offset, time_range="short_term")
+        artist_data = {}
+
+        #print(short_term_top_artists["items"][0]["id"])
+        for artist in short_term_top_artists["items"]:
+            tracks = [] # get the tracks of the artist that the user is currently listening to most
+            for track in short_term_top_tracks["items"]:
+                track_id = short_term_top_tracks["items"][0]["album"]['artists'][0]["id"]
+                if track_id == artist["id"]:
+                    tracks.append(track)
+                    ''' "{}".format(artist["id"])'''
+            artist_data[artist["name"]] = {"user_tracks": tracks, "associated_artists": sp_obj.artist_related_artists(artist["id"])}
+        print(artist_data)
+        
+        return render_template("analysis.html", top_artists = short_term_top_artists, term = "s h o r t  t e r m", artist_data=artist_data)
 
     if request.form.get('medium_term') == 'medium term':
         medium_term_top_artists = get_top_artists(sp_obj, limit = limit, offset = offset, time_range="medium_term")
