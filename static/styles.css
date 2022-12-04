@@ -193,7 +193,7 @@ h2 {
 
 .artist_grid_div {
     height: 300px;
-    width: 40%;
+    width: auto;
     margin: 30px;
     padding-top: 40px;
     background-color: #fff1e0;
