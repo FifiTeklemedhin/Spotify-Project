@@ -30,6 +30,20 @@ T o p  A r t i s t s  :  {{term}}
               <ul style="text-align: left">
                 <li>Popularity: {{artist["popularity"]}}/100</li>
 
+                <li>
+                  Genres: 
+                  {% set num_artists = artist["genres"] | length %}
+
+                  {% for index in range(num_artists - 1) %} <!--- adds a comma after every genre save the last-->
+                    {{artist["genres"][index]}}, 
+
+                  {% endfor %}
+
+                  {% if num_artists > 0 %}
+                    {{artist["genres"][num_artists - 1]}}
+                  {% endif %}
+                </li><br>
+
                 <li>Top Tracks: </li>
                
 
@@ -45,21 +59,8 @@ T o p  A r t i s t s  :  {{term}}
                   <a class="link" href="{{user_top_tracks[user_top_tracks_len - 1]["href"]}}"> {{user_top_tracks[user_top_tracks_len - 1]["name"]}}</a>  
                   {% endif %}
                 </li>
-                
-
-                <li>
-                  Genres: 
-                  {% set num_artists = artist["genres"] | length %}
-
-                  {% for index in range(num_artists - 1) %} <!--- adds a comma after every genre save the last-->
-                    {{artist["genres"][index]}}, 
-
-                  {% endfor %}
-
-                  {% if num_artists > 0 %}
-                    {{artist["genres"][num_artists - 1]}}
-                  {% endif %}
-                </li>
+            
+               
                 <li>
                   Associated Artists: 
                   {% set associated_artists = artist_data[artist["name"]]["associated_artists"] %}
