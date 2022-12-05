@@ -15,14 +15,19 @@ def term_analysis(sp_obj, limit, offset, time_range, num_associated_artists):
 
     for artist in term_top_artists["items"]:
         tracks = [] # get the tracks of the artist that the user is currently listening to most
-        for track in term_user_top_tracks["items"]:
-            track_id = term_user_top_tracks["items"][0]["album"]['artists'][0]["id"]
+        for track_index in range(len(term_user_top_tracks["items"])):
+            track_id = term_user_top_tracks["items"][track_index]["album"]['artists'][0]["id"]
             if track_id == artist["id"]:
-                tracks.append(track)
-            # gets a small number of associated artists to list on page. artist_related_artists() doesn't have a limit field
-            associated_artists = sp_obj.artist_related_artists(artist["id"])["artists"]
-            limited_associated_artists = [associated_artists[random.randint(0, len(associated_artists)-1)] for i in range(num_associated_artists)]
-            artist_data[artist["name"]] = {"user_top_tracks": tracks, "associated_artists": limited_associated_artists}
+                tracks.append(term_user_top_tracks["items"][track_index])
+        print("{}\n\n".format(tracks))
+
+        # gets a small number of associated artists to list on page. artist_related_artists() doesn't have a limit field
+        associated_artists = sp_obj.artist_related_artists(artist["id"])["artists"]
+        limited_associated_artists = [associated_artists[random.randint(0, len(associated_artists)-1)] for i in range(num_associated_artists)]
+        
+        # gets artist's top tracks
+
+        artist_data[artist["name"]] = {"user_top_tracks": tracks, "associated_artists": limited_associated_artists}
 
     return {"top_artists": term_top_artists, "artist_data": artist_data}
         

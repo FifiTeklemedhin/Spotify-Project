@@ -29,9 +29,24 @@ T o p  A r t i s t s  :  {{term}}
               <h3>{{artist["name"]}}</h3>
               <ul style="text-align: left">
                 <li>Popularity: {{artist["popularity"]}}/100</li>
+
                 <li>Top Tracks: </li>
+               
+
+                <li>Your Favorites: 
+                  {% set user_top_tracks = artist_data[artist["name"]]["user_top_tracks"] %}
+                  {% set user_top_tracks_len = user_top_tracks | length%}
+                    
+                  {% for index in range(user_top_tracks_len-1) %}
+                    <a class="link" href="{{user_top_tracks[index]["href"]}}">{{user_top_tracks[index]["name"]}},</a> 
+                  {% endfor %}
+  
+                  {% if user_top_tracks_len > 0 %}
+                  <a class="link" href="{{user_top_tracks[user_top_tracks_len - 1]["href"]}}"> {{user_top_tracks[user_top_tracks_len - 1]["name"]}}</a>  
+                  {% endif %}
+                </li>
                 
-                <li>Your Favorites: </li>
+
                 <li>
                   Genres: 
                   {% set num_artists = artist["genres"] | length %}
@@ -40,7 +55,10 @@ T o p  A r t i s t s  :  {{term}}
                     {{artist["genres"][index]}}, 
 
                   {% endfor %}
-                  {{artist["genres"][num_artists - 1]}}
+
+                  {% if num_artists > 0 %}
+                    {{artist["genres"][num_artists - 1]}}
+                  {% endif %}
                 </li>
                 <li>
                   Associated Artists: 
@@ -52,8 +70,10 @@ T o p  A r t i s t s  :  {{term}}
             
 
                   {% endfor %}
+
+                  {% if associated_artists_len > 0 %}
                   <a class="link" href="{{associated_artists[associated_artists_len - 1]["href"]}}"> {{associated_artists[associated_artists_len - 1]["name"]}}</a>  
-                 
+                  {% endif %}
                 </li>
               
               </ul>

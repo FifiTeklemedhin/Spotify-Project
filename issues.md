@@ -11,3 +11,6 @@
 
 ## Reccomendations page
 - links not working for albums; I think I have correct ones they just won't work through the API, even if I click on them manually on json
+
+## analysis:
+- using randint to get some random associated artists, not entirely random though
