@@ -45,35 +45,18 @@ def index():
 def analyze():
     limit = 4
     offset = 0
+    num_associated_artists = 4
     if request.form.get('short_term') == 'short term':
-        short_term_top_artists = get_top_artists(sp_obj, limit = limit, offset = offset, time_range="short_term")
-        short_term_top_tracks = sp_obj.current_user_top_tracks(limit = 100, offset = offset, time_range="short_term")
-        artist_data = {}
-
-        for artist in short_term_top_artists["items"]:
-            tracks = [] # get the tracks of the artist that the user is currently listening to most
-            for track in short_term_top_tracks["items"]:
-                track_id = short_term_top_tracks["items"][0]["album"]['artists'][0]["id"]
-                if track_id == artist["id"]:
-                    tracks.append(track)
-                    ''' "{}".format(artist["id"])'''
-            # associated_artists = sp_obj.artist_related_artists(artist["id"])
-            # associated_artist_clean = []
-            # for associated_artist in associated_artists:
-            #     associated_artists_clean.append({"name": associated_artist["name"], "url": associated_artist["url"]})
-
-            artist_data[artist["name"]] = {"user_tracks": tracks, "associated_artists": sp_obj.artist_related_artists(artist["id"])}
-        print(artist_data)
-        
-        return render_template("analysis.html", top_artists = short_term_top_artists, term = "s h o r t  t e r m", artist_data=artist_data)
+        short_term_analysis = term_analysis(sp_obj, limit, offset, time_range="short_term", num_associated_artists=num_associated_artists) # code in helpers.py
+        return render_template("analysis.html", top_artists = short_term_analysis["top_artists"], term = "s h o r t  t e r m", artist_data=short_term_analysis["artist_data"])
 
     if request.form.get('medium_term') == 'medium term':
-        medium_term_top_artists = get_top_artists(sp_obj, limit = limit, offset = offset, time_range="medium_term")
-        return render_template("analysis.html", top_artists = medium_term_top_artists, term = "m e d i u m  t e r m")
-    
+       medium_term_analysis = term_analysis(sp_obj, limit, offset, time_range="medium_term", num_associated_artists=num_associated_artists) # code in helpers.py
+       return render_template("analysis.html", top_artists = medium_term_analysis["top_artists"], term = "m e d i u m  t e r m", artist_data=medium_term_analysis["artist_data"])
+
     else:
-        long_term_top_artists = get_top_artists(sp_obj, limit = limit, offset = offset, time_range="long_term")
-        return render_template("analysis.html", top_artists = long_term_top_artists, term = "l o n g  t e r m")
+       long_term_analysis = term_analysis(sp_obj, limit, offset, time_range="long_term", num_associated_artists=num_associated_artists) # code in helpers.py
+       return render_template("analysis.html", top_artists = long_term_analysis["top_artists"], term = "l o n g  t e r m", artist_data=long_term_analysis["artist_data"])
 
     # top_artists = {"short_term": get_top_artists(sp_obj, limit = limit, offset = offset, time_range = "short_term"), "medium_term": get_top_artists(sp_obj, limit = limit, offset = offset, time_range = "medium_term"), "long_term": get_top_artists(sp_obj, limit = limit, offset = offset, time_range = "long_term")}
     # return render_template("analysis.html", top_artists = top_artists) # don't need to specify that index.html is in templates folder as render_templates automatically assumes its in there

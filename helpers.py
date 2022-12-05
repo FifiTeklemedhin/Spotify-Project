@@ -8,6 +8,24 @@ import sys
 import math
 import random
 
+def term_analysis(sp_obj, limit, offset, time_range, num_associated_artists):
+    term_top_artists = get_top_artists(sp_obj, limit = limit, offset = offset, time_range= time_range)
+    term_user_top_tracks = sp_obj.current_user_top_tracks(limit = 100, offset = offset, time_range= time_range)
+    artist_data = {}
+
+    for artist in term_top_artists["items"]:
+        tracks = [] # get the tracks of the artist that the user is currently listening to most
+        for track in term_user_top_tracks["items"]:
+            track_id = term_user_top_tracks["items"][0]["album"]['artists'][0]["id"]
+            if track_id == artist["id"]:
+                tracks.append(track)
+            # gets a small number of associated artists to list on page. artist_related_artists() doesn't have a limit field
+            associated_artists = sp_obj.artist_related_artists(artist["id"])["artists"]
+            limited_associated_artists = [associated_artists[random.randint(0, len(associated_artists)-1)] for i in range(num_associated_artists)]
+            artist_data[artist["name"]] = {"user_top_tracks": tracks, "associated_artists": limited_associated_artists}
+
+    return {"top_artists": term_top_artists, "artist_data": artist_data}
+        
 def get_recs_from_random_danceability(sp_obj, limit, offset):
      # gets total of 5 seeds (max allowed by spotify): two top artists and two top tracks over the past few months, and 1 random genre
     top_artists = sp_obj.current_user_top_artists(limit = 2, offset=offset, time_range="medium_term")
