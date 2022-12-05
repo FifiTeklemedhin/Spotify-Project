@@ -44,7 +44,20 @@ T o p  A r t i s t s  :  {{term}}
                   {% endif %}
                 </li><br>
 
-                <li>Top Tracks: </li>
+                <li>
+                  Top Tracks: 
+                  {% set artist_top_tracks = artist_data[artist["name"]]["artist_top_tracks"] %}
+                  {% set artist_top_tracks_len = artist_top_tracks | length%}
+                    
+                  {% for index in range(artist_top_tracks_len-1) %}
+                    <a class="link" href="{{artist_top_tracks[index]["href"]}}">{{artist_top_tracks[index]["name"]}},</a> 
+                  {% endfor %}
+  
+                  {% if artist_top_tracks_len > 0 %}
+                  <a class="link" href="{{artist_top_tracks[artist_top_tracks_len - 1]["href"]}}"> {{artist_top_tracks[artist_top_tracks_len - 1]["name"]}}</a>  
+                  {% endif %}
+
+                </li>
                
 
                 <li>Your Favorites: 
