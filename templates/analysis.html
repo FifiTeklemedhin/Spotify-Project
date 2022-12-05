@@ -31,7 +31,14 @@ T o p  A r t i s t s  :  {{term}}
                 <li>Popularity: {{artist["popularity"]}}/100</li>
                 <li>Top Tracks: </li>
                 <li>Your Favorites: </li>
-                <li>Genres: {{artist["genres"]}}</li>
+                <li>
+                  Genres: 
+                  {% for index in range((artist["genres"] | length) - 1) %} <!--- adds a comma after every genre save the last-->
+                    {{artist["genres"][index]}}, 
+
+                  {% endfor %}
+                  {{artist["genres"][(artist["genres"] | length) - 1]}}
+                </li>
                 <li>Associated Artists: </li>
               
               </ul>

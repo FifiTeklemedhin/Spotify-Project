@@ -50,7 +50,6 @@ def analyze():
         short_term_top_tracks = sp_obj.current_user_top_tracks(limit = 100, offset = offset, time_range="short_term")
         artist_data = {}
 
-        #print(short_term_top_artists["items"][0]["id"])
         for artist in short_term_top_artists["items"]:
             tracks = [] # get the tracks of the artist that the user is currently listening to most
             for track in short_term_top_tracks["items"]:
@@ -58,6 +57,11 @@ def analyze():
                 if track_id == artist["id"]:
                     tracks.append(track)
                     ''' "{}".format(artist["id"])'''
+            # associated_artists = sp_obj.artist_related_artists(artist["id"])
+            # associated_artist_clean = []
+            # for associated_artist in associated_artists:
+            #     associated_artists_clean.append({"name": associated_artist["name"], "url": associated_artist["url"]})
+
             artist_data[artist["name"]] = {"user_tracks": tracks, "associated_artists": sp_obj.artist_related_artists(artist["id"])}
         print(artist_data)
         
