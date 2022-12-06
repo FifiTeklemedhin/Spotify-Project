@@ -21,8 +21,16 @@ def getToken(code, client_id, client_secret, redirect_uri):
 
    # modified from just passing in formatted str to base64.b64encode(), referenced: https://www.geeksforgeeks.org/python-convert-string-to-bytes/
 
-    client_bytes = bytes("{}:{}".format(client_id, client_secret), 'utf-8')
-    encoded = base64.b64encode(client_bytes)
+   
+    base64_string = u"{}:{}".format(client_id, client_secret)
+    encoded = base64_string.encode("unicode_escape")
+    decoded = encoded.decode("unicode_escape")
+
+    print("{}:{}".format(client_id, client_secret) == decoded)
+
+    print("ENCODED {}".format(encoded))
+    print("DECODED {}".format(decoded))
+
     headers = {"Content-Type" : HEADER, "Authorization" : "Basic {}".format(encoded)} 
 
     post = requests.post(SPOTIFY_URL_TOKEN, params=body, headers=headers)
