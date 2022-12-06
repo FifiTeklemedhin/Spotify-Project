@@ -33,9 +33,7 @@ sp_obj = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id= credentials.SPOTIP
 # TODO: authorize other users
 @app.route("/")
 def login():
-
-   
-   
+    print(Spotify.login("pomykidiste@gmail.com", "Mrs.McKitty101"))
     return render_template("login.html") # don't need to specify that login.html is in templates folder as render_templates automatically assumes its in there
 
 @app.route("/history")

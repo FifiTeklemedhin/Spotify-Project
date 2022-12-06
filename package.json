@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "bootstrap": "^5.2.3",
-    "brew": "^0.0.8"
+    "brew": "^0.0.8",
+    "request": "^2.88.2"
   }
 }

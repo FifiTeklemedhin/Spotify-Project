@@ -17,7 +17,10 @@ def getCsrfToken():
 	}
 
 	result = requests.get("https://accounts.spotify.com/it-IT/login", headers=headers)		# Get request to the login page
-	return result.cookies['csrf_token']	# Returning csfr_token needed for authentication
+	print("COOOKIES: {}".format(result.cookies['sp_sso_csrf_token']))
+
+	# original code, modified to code below because key for csrf token changed: return result.cookies['csrf_token']	# Returning csfr_token needed for authentication 
+	return result.cookies['sp_sso_csrf_token']
 
 # Returns the dict with the data
 def buildPayload(csrfToken,username,password):
@@ -63,6 +66,7 @@ def login(username,password):
 
 	login = requests.post(LOGIN_URL, headers=headers, cookies=cookies, data=payload)	# Perform the login
 
+	print("LOGIN TEXT: {}".format(login.text))
 	if 'displayName' in login.text:
 		sub = requests.get("https://www.spotify.com/us/account/overview/", cookies=login.cookies)
 		acc = sub.text
