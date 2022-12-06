@@ -7,13 +7,15 @@ import sys
 from helpers import *
 import random
 
-# # refrenced how to import a file outside of this file's path from this forum thread: https://stackoverflow.com/questions/4383571/importing-files-from-different-folder 
-# import sys # # caution: path[0] is reserved for script path (or '' in REPL)
-# sys.path.insert(1, 'Spotify-Login-API-master')
-# import Spotify
 
-import login_attempt
+from flask import Flask
 from flask import Flask, flash, redirect, render_template, request, session
+
+# referenced how to import files outside of main.py's path from this article: https://stackoverflow.com/questions/4383571/importing-files-from-different-folder 
+import sys
+sys.path.insert(1, "Flask-Spotify-Auth-master")
+
+import startup, setup
 
 app = Flask(__name__)
 
@@ -22,77 +24,39 @@ global sp_obj
 
 # TODO: put this code into login and authorize other users
 
-# currently just manually logs into my account
+# # currently just manually logs into my account
 # scope = "user-top-read"
 
 # # authentication, just made a spotipy object
 # sp_obj = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id= credentials.SPOTIPY_CLIENT_ID, client_secret= credentials.SPOTIPY_CLIENT_SECRET, redirect_uri= credentials.SPOTIPY_REDIRECT_URI, scope=scope))
 
 
-# # TODO: authorize other users
+# TODO: authorize other users
+
+
+# *************************** authorization ***************************
+from flask import Flask, redirect, request
+import startup
+
+@app.route('/')
+def index():
+    response = startup.getUser()
+    print("RESPONSE {}".format(response))
+    return redirect(response)
+        
+@app.route('/callback/')
+def get_access_token():
+    startup.getUserToken(request.args['code'])
+    # ** I redirect to my homepage here **
+    return redirect("login.html")
+
+
+#*************************** my code ***************************
 # @app.route("/")
 # def login():
-#     return render_template("./login_templates/index.html")
-#     # return render_template("login.html")
-
-
-
-from flask import abort, Flask, make_response, redirect, render_template, request
-import logging
-import os
-import secrets
-import string
-from urllib.parse import urlencode
-
-
-logging.basicConfig(
-    format='%(asctime)s - %(levelname)s - %(message)s', level=logging.DEBUG
-)
-
-
-# Client info
-CLIENT_ID = credentials.SPOTIPY_CLIENT_ID
-REDIRECT_URI = credentials.SPOTIPY_REDIRECT_URI
-
-# Spotify API endpoints
-AUTH_URL = 'https://accounts.spotify.com/authorize'
-SEARCH_ENDPOINT = 'https://api.spotify.com/v1/search'
-
-CLIENT_SECRET = credentials.SPOTIPY_CLIENT_SECRET
-
-import requests
-from base64 import b64encode
-import six
-from urllib.request import pathname2url
-
-scopes = 'user-top-read user-follow-read'
-oauth = ('https://accounts.spotify.com/authorize' + '?response_type=code' +
-        '&client_id=' + CLIENT_ID +
-        '&scope=' + pathname2url(scopes) +
-        '&redirect_uri=' + pathname2url(REDIRECT_URI))
-
-
-
-url = 'https://accounts.spotify.com/api/token'
-auth_header =b64encode(six.text_type(CLIENT_ID + ':' + CLIENT_SECRET).encode('ascii'))
-headers = {'Authorization':'Basic %s' % auth_header.decode('ascii')}
-data = {'redirect_uri':REDIRECT_URI,
-    'code':code,
-    'grant_type':'authorization_code',
-    'scope':scopes}
-r = requests.post(url, data=data, headers=headers, verify=True)
-token_info = r.json()
-
-# # redirect from login() is routed here 
-# @app.route('/callback')
-# def auth():
-#     print(request)
 #     return render_template("login.html")
-# # redirect from auth() is routed here 
-# @app.route('/callback')
-# def home():
-    
-#     return render_template("login.html")
+
+
 @app.route("/history")
 # @login_required
 def history():

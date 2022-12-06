@@ -1,5 +1,5 @@
 import base64, json, requests
- 
+
 SPOTIFY_URL_AUTH = 'https://accounts.spotify.com/authorize/?'
 SPOTIFY_URL_TOKEN = 'https://accounts.spotify.com/api/token/'
 RESPONSE_TYPE = 'code'   

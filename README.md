@@ -12,4 +12,4 @@ An app that creates wrap (recap of top songs, artists, minutes listened every mo
 * main code fo the app
 
 # Authorization
-Used [this extension](https://github.com/vanortg/Flask-Spotify-Auth) to access the log-in client for spotify. I do not have a strong enough understanding of Flask and Python or JavaScript to access the client more manually. Learning to do so with the limited documentation I found online would have been a project in and of itself. I verified with a TF that I could use this extension so long as I cite it.
+Used [this extension]() to access the log-in client for spotify. I do not have a strong enough understanding of Flask and Python or JavaScript to access the client more manually. Learning to do so with the limited documentation I found online would have been a project in and of itself. I verified with a TF that I could use this extension so long as I cite it.
