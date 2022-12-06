@@ -9,25 +9,27 @@ Guessing Game
 
 {% block main%}
 
+{{guessing_game_stats}}
+
 <h3 class="guessing-game-header">Average Artist Popularity:</h3>
 <h6 class="guessing-game-header"> <i>(out of 100)</i> </h6>
-<form class="guessing-form" action="/game" method="post">
+<form class="guessing-form" >
     <label for="short_term">Short term:</label>
-    <input type="number" id="short_term_field" name="short_term_field">
+    <input type="number" id="st-av-artist" name="short_term_field">
     
     <label for="short_term">Medium term:</label>
-    <input type="number" id="medium_term_field" name="medium_term_field">
+    <input type="number" id="mt-av-artist" name="medium_term_field">
     
     <label for="short_term">Long term:</label>
-    <input type="number" id="long_term_field" name="long_term_field">
+    <input type="number" id="lt-av-artist" name="long_term_field">
     
-    <input class="guessing-submit" type="submit">
+    <input class="guessing-submit" id="average-artist-popularity-submit" type="submit">
 </form>
 
 
 <h3 class="guessing-game-header">Average Track Popularity:</h3>
 <h6 class="guessing-game-header"> <i>(out of 100)</i> </h6>
-<form class="guessing-form" action="/game" method="post">
+<form class="guessing-form" >
     <label for="short_term">Short term:</label>
     <input type="number" id="short_term_field" name="short_term_field">
     
@@ -37,12 +39,12 @@ Guessing Game
     <label for="short_term">Long term:</label>
     <input type="number" id="long_term_field" name="long_term_field">
     
-    <input class="guessing-submit" type="submit">
+    <input class="guessing-submit" id="average-track-popularity-submit" type="submit">
 </form>
 
 
 <h3 class="guessing-game-header">Top Genre:</h3>
-<form class="guessing-form" action="/game" method="post">
+<form class="guessing-form" >
     <label for="short_term">Short term:</label>
     <input type="text" id="short_term_field" name="short_term_field">
     
@@ -52,11 +54,11 @@ Guessing Game
     <label for="short_term">Long term:</label>
     <input type="text" id="long_term_field" name="long_term_field">
     
-    <input class="guessing-submit" type="submit">
+    <input class="guessing-submit" id="top-genre-submit" type="submit">
 </form>
 
 <h3 class="guessing-game-header">Top Artist:</h3>
-<form class="guessing-form" action="/game" method="post">
+<form class="guessing-form" >
     <label for="short_term">Short term:</label>
     <input type="text" id="short_term_field" name="short_term_field">
     
@@ -66,11 +68,11 @@ Guessing Game
     <label for="short_term">Long term:</label>
     <input type="text" id="long_term_field" name="long_term_field">
     
-    <input class="guessing-submit" type="submit">
+    <input class="guessing-submit" id="top-artist-submit" type="submit">
 </form>
 
 <h3 class="guessing-game-header">Top Track:</h3>
-<form class="guessing-form" action="/game" method="post">
+<form class="guessing-form" >
     <label for="short_term">Short term:</label>
     <input type="text" id="short_term_field" name="short_term_field">
     
@@ -80,7 +82,125 @@ Guessing Game
     <label for="short_term">Long term:</label>
     <input type="text" id="long_term_field" name="long_term_field">
     
-    <input class="guessing-submit" type="submit">
+    <input class="guessing-submit" id="top-track-submit" type="submit">
 </form>
 
+
+
 {% endblock %}
+<script>
+    function compareAndStyle(element, desired_value, value)
+    {
+        if (value === desired_value)
+            {
+                element.style.backgroundColor = 'green';
+                element.value = 'Correct!';
+            }
+        else
+            {
+                element.style.backgroundColor = 'red';
+                element.value = 'Incorrect.';
+            }
+    }
+    document.addEventListener('DOMContentLoaded', function()
+    {
+        console.log("page loaded\n\n\n")
+        let averageArtistPopularity = document.getElementById('average-artist-popularity-submit');
+        averageArtistPopularity.addEventListener('click', function()
+        {
+            
+            stats = js_stats()["average_popularity_of_artists"]
+            console.log("SUBMITTED" + stats)
+    
+            let shortTermInput = document.getElementById('st-av-artist');
+            let mediumTermInput = document.getElementById('mt-av-artist');
+            let longTermInput = document.getElementById('lt-av-artist');
+            
+            compareAndStyle(shortTermInput, shortTermInput.value.toLowerCase(), stats["short_term"])
+            compareAndStyle(mediumTermInput, mediumTermInput.value.toLowerCase(), stats["medium_term"])
+            compareAndStyle(longTermInput, longTermInput.value.toLowerCase(), stats["long_term"])
+            
+           
+        });
+    
+    
+    });
+    </script>
+
+<!-- let averageTrackPopularity = document.getElementById('average-track-popularity-submit');
+freeResponseButton.addEventListener('click', function()
+{
+    let shortTermInput = document.getElementById('free-response');
+    let mediumTermInput = document.getElementById('free-response');
+    let longTermInput = document.getElementById('free-response');
+
+    if (freeResponseInput.value.toLowerCase() === 'crimson')
+    {
+        freeResponseInput.style.backgroundColor = 'green';
+        freeResponseInput.value = 'Correct!';
+    }
+    else
+    {
+        freeResponseInput.style.backgroundColor = 'red';
+        freeResponseInput.value = 'Incorrect.';
+    }
+});
+
+
+let topGenre = document.getElementById('top-genre-submit');
+freeResponseButton.addEventListener('click', function()
+{
+    let shortTermInput = document.getElementById('free-response');
+    let mediumTermInput = document.getElementById('free-response');
+    let longTermInput = document.getElementById('free-response');
+
+    if (freeResponseInput.value.toLowerCase() === 'crimson')
+    {
+        freeResponseInput.style.backgroundColor = 'green';
+        freeResponseInput.value = 'Correct!';
+    }
+    else
+    {
+        freeResponseInput.style.backgroundColor = 'red';
+        freeResponseInput.value = 'Incorrect.';
+    }
+});
+
+
+let topArtist = document.getElementById('top-artist-submit');
+freeResponseButton.addEventListener('click', function()
+{
+    let shortTermInput = document.getElementById('free-response');
+    let mediumTermInput = document.getElementById('free-response');
+    let longTermInput = document.getElementById('free-response');
+
+    if (freeResponseInput.value.toLowerCase() === 'crimson')
+    {
+        freeResponseInput.style.backgroundColor = 'green';
+        freeResponseInput.value = 'Correct!';
+    }
+    else
+    {
+        freeResponseInput.style.backgroundColor = 'red';
+        freeResponseInput.value = 'Incorrect.';
+    }
+});
+
+let topTrack = document.getElementById('top-track-submit');
+freeResponseButton.addEventListener('click', function()
+{
+    let shortTermInput = document.getElementById('free-response');
+    let mediumTermInput = document.getElementById('free-response');
+    let longTermInput = document.getElementById('free-response');
+
+    if (freeResponseInput.value.toLowerCase() === 'crimson')
+    {
+        freeResponseInput.style.backgroundColor = 'green';
+        freeResponseInput.value = 'Correct!';
+    }
+    else
+    {
+        freeResponseInput.style.backgroundColor = 'red';
+        freeResponseInput.value = 'Incorrect.';
+    }
+}); -->

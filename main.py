@@ -16,7 +16,7 @@ import sys
 sys.path.insert(1, "Flask-Spotify-Auth-master")
 
 import startup, setup
-
+import json
 app = Flask(__name__)
 
 global scope
@@ -30,21 +30,21 @@ global sp_obj
 
 
 #*************************** authorization ***************************
-from flask import Flask, redirect, request
-import startup
+# from flask import Flask, redirect, request
+# import startup
 
-@app.route('/')
-def index():
-    response = startup.getUser()
-    print("RESPONSE {}\n\n".format(response))
-    return redirect(response)
+# @app.route('/')
+# def index():
+#     response = startup.getUser()
+#     print("RESPONSE {}\n\n".format(response))
+#     return redirect(response)
         
-@app.route('/callback/')
-def get_access_token():
-    resp2 = startup.getUserToken(request.args['code'])
-    print("RESP2: {}\n".format(resp2))
-    # ** I redirect to my homepage here **
-    return render_template("login.html")
+# @app.route('/callback')
+# def get_access_token():
+#     resp2 = startup.getUserToken(request.args['code'])
+#     print("RESP2: {}\n".format(resp2))
+#     # ** I redirect to my homepage here **
+#     return render_template("login.html")
 
 
 #*************************** my code ***************************
@@ -55,12 +55,12 @@ scope = "user-top-read"
 sp_obj = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id= credentials.SPOTIPY_CLIENT_ID, client_secret= credentials.SPOTIPY_CLIENT_SECRET, redirect_uri= credentials.SPOTIPY_REDIRECT_URI, scope=scope))
 
 
-# @app.route("/")
-# def login():
-#     return render_template("login.html")
+@app.route("/")
+def login():
+    return render_template("login.html")
 
 
-@app.route("/callback/history")
+@app.route("/history")
 # @login_required
 def history():
 
@@ -77,7 +77,7 @@ def history():
     return render_template("history.html", short_term_tracks = get_track_grid(short_term_data), medium_term_tracks = get_track_grid(medium_term_data), long_term_tracks = get_track_grid(long_term_data)) # don't need to specify that index.html is in templates folder as render_templates automatically assumes its in there
 
 
-@app.route("/callback/analysis", methods=["POST"])
+@app.route("/analysis", methods=["POST"])
 #@long_required
 def analyze():
     limit = 4
@@ -100,7 +100,7 @@ def analyze():
 
 
 
-@app.route("/callback/recommendations", methods=["GET", "POST"])
+@app.route("/recommendations", methods=["GET", "POST"])
 def recommend():
 
     if request.method == "POST":
@@ -144,10 +144,12 @@ def recommend():
         return render_template("recommendations.html", recommendations = recommendations)
 
 # TODO: guessing game
-@app.route("/callback/game")
+@app.route("/game")
 def guessing_game():
-    print("CURRENT USER: {}".format(sp_obj.current_user()))
-    return render_template("game.html")
+
+    offset = 0
+    guessing_game_stats = get_guessing_game_stats(sp_obj, offset)
+    return render_template("game.html", guessing_game_stats=guessing_game_stats, js_stats = json.dumps(guessing_game_stats))
 
 
 
