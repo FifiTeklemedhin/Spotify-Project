@@ -85,10 +85,7 @@ Guessing Game
     <input class="guessing-submit" id="top-track-submit" type="submit">
 </form>
 
-
-
-{% endblock %}
-<script>
+<script type="text/javascript">
     function compareAndStyle(element, desired_value, value)
     {
         if (value === desired_value)
@@ -115,10 +112,16 @@ Guessing Game
             let shortTermInput = document.getElementById('st-av-artist');
             let mediumTermInput = document.getElementById('mt-av-artist');
             let longTermInput = document.getElementById('lt-av-artist');
-            
-            compareAndStyle(shortTermInput, shortTermInput.value.toLowerCase(), stats["short_term"])
+
+            if (shortTermInput.value.toLowerCase() === 12)
+            {
+                shortTermInput.style.backgroundColor = 'green';
+                shortTermInput.value = 'Correct!';
+            }
+                    
+           /* compareAndStyle(shortTermInput, shortTermInput.value.toLowerCase(), stats["short_term"])
             compareAndStyle(mediumTermInput, mediumTermInput.value.toLowerCase(), stats["medium_term"])
-            compareAndStyle(longTermInput, longTermInput.value.toLowerCase(), stats["long_term"])
+            compareAndStyle(longTermInput, longTermInput.value.toLowerCase(), stats["long_term"])*/
             
            
         });
@@ -126,6 +129,9 @@ Guessing Game
     
     });
     </script>
+
+{% endblock %}
+
 
 <!-- let averageTrackPopularity = document.getElementById('average-track-popularity-submit');
 freeResponseButton.addEventListener('click', function()

@@ -7,6 +7,7 @@ import credentials
 import sys
 import math
 import random
+from collections import Counter
 
 def get_guessing_game_stats(sp_obj, offset):
 
@@ -18,13 +19,42 @@ def get_guessing_game_stats(sp_obj, offset):
     medium_term_top_tracks = sp_obj.current_user_top_tracks(limit = 100, offset=offset, time_range="medium_term")["items"]
     long_term_top_tracks = sp_obj.current_user_top_tracks(limit = 100, offset=offset, time_range="long_term")["items"]
 
+    # used this code to find most frequent element in a list: https://www.geeksforgeeks.org/python-find-most-frequent-element-in-a-list/
+    short_term_genres = []
+    medium_term_genres = []
+    long_term_genres = []
+
+    # gets all genres of all artists user listens to for a time range
+    for index in range(len(short_term_top_artists)): # all the top artist dictionaries should be the same length
+        short_term_genres += short_term_top_artists[index]["genres"]
+        medium_term_genres += medium_term_top_artists[index]["genres"]
+        long_term_genres += long_term_top_artists[index]["genres"]
+
+    # gets most common genre among artists for each term
+    counter = Counter(short_term_genres)
+    short_term_top_genre = counter.most_common(1)[0][0]
+
+    counter = Counter(medium_term_genres)
+    medium_term_top_genre = counter.most_common(1)[0][0]
+
+    counter = Counter(long_term_genres)
+    long_term_top_genre = counter.most_common(1)[0][0]
+
+    print("TOP GENREs: {}, {}, {}".format(short_term_top_genre, medium_term_top_genre, long_term_top_genre))
+
+    # final dictionaries that are returned with data for each term
+
+    top_genres = {"short_term": short_term_top_genre, "medium_term": medium_term_top_genre, "long_term": long_term_top_genre}
+
     average_popularity_of_artists = {"short_term": get_popularity_stats(short_term_top_artists, "artist")["mean"], "medium_term": get_popularity_stats(medium_term_top_artists, "artist")["mean"], "long_term": get_popularity_stats(long_term_top_artists, "artist")["mean"]}
     average_popularity_of_tracks = {"short_term": get_popularity_stats(short_term_top_tracks, "track")["mean"], "medium_term": get_popularity_stats(medium_term_top_tracks, "track")["mean"], "long_term": get_popularity_stats(long_term_top_tracks, "track")["mean"]}
     
     first_top_artists = {"short_term": short_term_top_artists[0]["name"], "long_term": long_term_top_artists[0]["name"], "medium_term": medium_term_top_artists[0]["name"]}
     first_top_tracks = {"short_term": short_term_top_tracks[0]["name"], "long_term": long_term_top_tracks[0]["name"], "medium_term": medium_term_top_tracks[0]["name"]}
 
-    return {"average_popularity_of_artists": average_popularity_of_artists, 'average_popularity_of_tracks': average_popularity_of_tracks, 'first_top_artists': first_top_artists,'first_top_tracks': first_top_tracks }
+    # returns data for use in main.py
+
+    return {"average_popularity_of_artists": average_popularity_of_artists, 'average_popularity_of_tracks': average_popularity_of_tracks, 'first_top_artists': first_top_artists,'first_top_tracks': first_top_tracks, 'top_genres': top_genres}
    
     
 def get_popularity_stats(artists_or_tracks_list, track_or_artist): # requires user to specify if passing in track or artist because the way the popularity is indexed depends on it
