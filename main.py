@@ -7,6 +7,13 @@ import sys
 from helpers import *
 import random
 
+# refrenced how to import a file outside of this file's path from this forum thread: https://stackoverflow.com/questions/4383571/importing-files-from-different-folder 
+import sys
+# caution: path[0] is reserved for script path (or '' in REPL)
+sys.path.insert(1, 'Spotify-Login-API-master')
+import Spotify
+
+
 from flask import Flask
 from flask import Flask, flash, redirect, render_template, request, session
 app = Flask(__name__)
@@ -23,9 +30,17 @@ scope = "user-top-read"
 sp_obj = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id= credentials.SPOTIPY_CLIENT_ID, client_secret= credentials.SPOTIPY_CLIENT_SECRET, redirect_uri= credentials.SPOTIPY_REDIRECT_URI, scope=scope))
 
 
+# TODO: authorize other users
 @app.route("/")
+def login():
+
+   
+   
+    return render_template("login.html") # don't need to specify that login.html is in templates folder as render_templates automatically assumes its in there
+
+@app.route("/history")
 # @login_required
-def index():
+def history():
 
    
     # requests client's top tracks and lists them out w/ link
@@ -37,7 +52,7 @@ def index():
     
     # flask passes in track data in format of a grid: as a list of lists, with each list having a dict of 4 tracks in it (refer to helpers.py for more details)
 
-    return render_template("index.html", short_term_tracks = get_track_grid(short_term_data), medium_term_tracks = get_track_grid(medium_term_data), long_term_tracks = get_track_grid(long_term_data)) # don't need to specify that index.html is in templates folder as render_templates automatically assumes its in there
+    return render_template("history.html", short_term_tracks = get_track_grid(short_term_data), medium_term_tracks = get_track_grid(medium_term_data), long_term_tracks = get_track_grid(long_term_data)) # don't need to specify that index.html is in templates folder as render_templates automatically assumes its in there
 
 
 @app.route("/analysis", methods=["POST"])
@@ -62,10 +77,8 @@ def analyze():
     # return render_template("analysis.html", top_artists = top_artists) # don't need to specify that index.html is in templates folder as render_templates automatically assumes its in there
 
 
-# TODO: authorize other users
-@app.route("/login")
-def login():
-    return render_template("login.html")
+
+
 
 # TODO: reccomendations
 @app.route("/recommendations", methods=["GET", "POST"])
