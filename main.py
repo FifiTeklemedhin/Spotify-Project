@@ -36,22 +36,23 @@ import startup
 @app.route('/')
 def index():
     response = startup.getUser()
-    print("RESPONSE {}".format(response))
+    print("RESPONSE {}\n\n".format(response))
     return redirect(response)
         
 @app.route('/callback/')
 def get_access_token():
+    print("CODE: {}\n".format(request.args['code']))
     startup.getUserToken(request.args['code'])
     # ** I redirect to my homepage here **
-    return redirect("login.html")
+    return render_template("login.html")
 
 
 #*************************** my code ***************************
-# # currently just manually logs into my account
-# scope = "user-top-read"
+# currently just manually logs into my account
+scope = "user-top-read"
 
-# # authentication, just made a spotipy object
-# sp_obj = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id= credentials.SPOTIPY_CLIENT_ID, client_secret= credentials.SPOTIPY_CLIENT_SECRET, redirect_uri= credentials.SPOTIPY_REDIRECT_URI, scope=scope))
+# authentication, just made a spotipy object
+sp_obj = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id= credentials.SPOTIPY_CLIENT_ID, client_secret= credentials.SPOTIPY_CLIENT_SECRET, redirect_uri= credentials.SPOTIPY_REDIRECT_URI, scope=scope))
 
 
 # @app.route("/")
@@ -59,7 +60,7 @@ def get_access_token():
 #     return render_template("login.html")
 
 
-@app.route("/history")
+@app.route("/callback/history")
 # @login_required
 def history():
 
@@ -76,7 +77,7 @@ def history():
     return render_template("history.html", short_term_tracks = get_track_grid(short_term_data), medium_term_tracks = get_track_grid(medium_term_data), long_term_tracks = get_track_grid(long_term_data)) # don't need to specify that index.html is in templates folder as render_templates automatically assumes its in there
 
 
-@app.route("/analysis", methods=["POST"])
+@app.route("/callback/analysis", methods=["POST"])
 #@long_required
 def analyze():
     limit = 4
@@ -99,7 +100,7 @@ def analyze():
 
 
 
-@app.route("/recommendations", methods=["GET", "POST"])
+@app.route("/callback/recommendations", methods=["GET", "POST"])
 def recommend():
 
     if request.method == "POST":
@@ -143,7 +144,7 @@ def recommend():
         return render_template("recommendations.html", recommendations = recommendations)
 
 # TODO: guessing game
-@app.route("/game")
+@app.route("/callback/game")
 def guessing_game():
     print("CURRENT USER: {}".format(sp_obj.current_user()))
     return render_template("game.html")

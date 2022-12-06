@@ -19,22 +19,29 @@ def getToken(code, client_id, client_secret, redirect_uri):
         "client_secret": client_secret
     }
 
+
    # modified from just passing in formatted str to base64.b64encode(), referenced: https://www.geeksforgeeks.org/python-convert-string-to-bytes/
 
    
-    base64_string = u"{}:{}".format(client_id, client_secret)
-    encoded = base64_string.encode("unicode_escape")
-    decoded = encoded.decode("unicode_escape")
+    # base64_string = u"{}:{}".format(client_id, client_secret)
+    # encoded = base64_string.encode("unicode_escape")
+    # decoded = encoded.decode("unicode_escape")
 
-    print("{}:{}".format(client_id, client_secret) == decoded)
+    # print("{}:{}".format(client_id, client_secret) == decoded)
 
-    print("ENCODED {}".format(encoded))
-    print("DECODED {}".format(decoded))
+    # print("ENCODED {}".format(encoded))
+    # print("DECODED {}".format(decoded))
 
-    headers = {"Content-Type" : HEADER, "Authorization" : "Basic {}".format(encoded)} 
+    # headers = {"Content-Type" : HEADER, "Authorization" : "Basic {}".format(encoded)} 
+    #  post = requests.post(SPOTIFY_URL_TOKEN, params=body, headers=headers)
+    SPOTIFY_TOKEN = "https://accounts.spotify.com/api/token"
+  
+    r = requests.post(url=SPOTIFY_TOKEN, data=body)
+    print("R JSON: {}".format(r.json()))
+    # return handleToken(json.loads(post.text))
 
-    post = requests.post(SPOTIFY_URL_TOKEN, params=body, headers=headers)
-    return handleToken(json.loads(post.text))
+
+    return r.json()
     
 def handleToken(response):
     print("HANDLE TOKEN RESPONSE: {}".format(response))
