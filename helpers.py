@@ -8,6 +8,36 @@ import sys
 import math
 import random
 
+
+def get_popularity_stats(artists_or_tracks_list, track_or_artist): # requires user to specify if passing in track or artist because the way the popularity is indexed depends on it
+    mean = 0
+    mode_ranges = {"0-10": 0, "11-20": 0, "21-30": 0, "31-40": 0, "41-50": 0, "51-60":0, "61-70": 0, "71-80":0, "81-90":0, "91-100":0}
+    highest_mode_range = "0-10"
+
+    for artist_or_track in artists_or_tracks_list:
+        popularity = 0
+
+        if(track_or_artist == "artist"):
+            popularity = artist_or_track["popularity"]
+        else :
+             popularity = artist_or_track["popularity"]
+
+        mean += artist_or_track["popularity"]
+        
+        for i in range(1, 110, 10):
+            if(popularity < i):
+                mode_index = "{}-{}".format(i-10, i-1)
+                mode_ranges[mode_index] +=1
+   
+    mean = mean / len(artists_or_tracks_list)  
+    for mode_range in mode_ranges:
+        # if several modes, selects highest
+        if mode_ranges[mode_range] >= mode_ranges[highest_mode_range]:
+            highest_mode_range = mode_range # gets the range name (ie "0-20")
+    
+    return {"mean": mean, "highest_mode_range": highest_mode_range}
+
+
 def is_artist_or_song_person(num_songs_per_artist): # outputs a string of whether a user is more of an artist or song person depending on the % of artists they only have 1-2 songs they listen to
     count = 0 # counts number of artists that user is only listening 1-2 songs for
     num_artists = len(num_songs_per_artist)
@@ -26,6 +56,8 @@ def is_artist_or_song_person(num_songs_per_artist): # outputs a string of whethe
 def term_analysis(sp_obj, limit, offset, time_range, num_associated_artists):
     term_top_artists = get_top_artists(sp_obj, limit = limit, offset = offset, time_range= time_range)
     term_user_top_tracks = sp_obj.current_user_top_tracks(limit = 100, offset = offset, time_range= time_range)
+
+    all_user_top_tracks = [] #used to get popularity stats on tracks
     num_songs_per_artist = []
     artist_data = {}
 
@@ -35,6 +67,7 @@ def term_analysis(sp_obj, limit, offset, time_range, num_associated_artists):
             track_id = term_user_top_tracks["items"][track_index]["album"]['artists'][0]["id"]
             if track_id == artist["id"]:
                 user_top_tracks.append(term_user_top_tracks["items"][track_index])
+                all_user_top_tracks.append(term_user_top_tracks["items"][track_index])
 
         # a limited number of artist's top tracks in US; artist_top_tracks() has no limit param
         num_top_tracks = num_associated_artists if num_associated_artists <= 5 else 5 # want the same number of tracks as associated artists for more uniform formatting, or up to 5
@@ -49,7 +82,7 @@ def term_analysis(sp_obj, limit, offset, time_range, num_associated_artists):
 
         artist_data[artist["name"]] = {"user_top_tracks": user_top_tracks, "artist_top_tracks": limited_artist_top_tracks, "associated_artists": limited_associated_artists}
 
-    return {"top_artists": term_top_artists, "artist_data": artist_data, "artist_or_song_person": is_artist_or_song_person(num_songs_per_artist)}
+    return {"top_artists": term_top_artists, "artist_data": artist_data, "artist_or_song_person": is_artist_or_song_person(num_songs_per_artist), "artist_popularity_stats": get_popularity_stats(term_top_artists["items"], "artist"), "track_popularity_stats": get_popularity_stats(all_user_top_tracks, "track")}
         
 def get_recs_from_random_danceability(sp_obj, limit, offset):
      # gets total of 5 seeds (max allowed by spotify): two top artists and two top tracks over the past few months, and 1 random genre
