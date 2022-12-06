@@ -7,15 +7,19 @@ import sys
 from helpers import *
 import random
 
-# refrenced how to import a file outside of this file's path from this forum thread: https://stackoverflow.com/questions/4383571/importing-files-from-different-folder 
-import sys
-# caution: path[0] is reserved for script path (or '' in REPL)
-sys.path.insert(1, 'Spotify-Login-API-master')
-import Spotify
+# # refrenced how to import a file outside of this file's path from this forum thread: https://stackoverflow.com/questions/4383571/importing-files-from-different-folder 
+# import sys # # caution: path[0] is reserved for script path (or '' in REPL)
+# sys.path.insert(1, 'Spotify-Login-API-master')
+# import Spotify
 
+# referenced how to import a file outside of this file's path from this forum thread: https://stackoverflow.com/questions/4383571/importing-files-from-different-folder 
+import sys # caution: path[0] is reserved for script path (or '' in REPL)
+sys.path.insert(1, 'Flask-Spotify-Auth-master')
+import startup
+import time
 
-from flask import Flask
 from flask import Flask, flash, redirect, render_template, request, session
+
 app = Flask(__name__)
 
 global scope
@@ -33,9 +37,17 @@ sp_obj = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id= credentials.SPOTIP
 # TODO: authorize other users
 @app.route("/")
 def login():
-    print(Spotify.login("pomykidiste@gmail.com", "Mrs.McKitty101"))
-    return render_template("login.html") # don't need to specify that login.html is in templates folder as render_templates automatically assumes its in there
+    startup.refreshToken(10)
+    response = startup.getUser()
+    print(response)
+    # return redirect(response)
+    return render_template("login.html")
 
+# redirect from login() is routed here   
+@app.route('/callback')
+def home():
+    startup.getUserToken(request.args['code'])
+    # return render_template("login.html")
 @app.route("/history")
 # @login_required
 def history():
