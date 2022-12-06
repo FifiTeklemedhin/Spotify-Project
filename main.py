@@ -41,8 +41,8 @@ def index():
         
 @app.route('/callback/')
 def get_access_token():
-    print("CODE: {}\n".format(request.args['code']))
-    startup.getUserToken(request.args['code'])
+    resp2 = startup.getUserToken(request.args['code'])
+    print("RESP2: {}\n".format(resp2))
     # ** I redirect to my homepage here **
     return render_template("login.html")
 
