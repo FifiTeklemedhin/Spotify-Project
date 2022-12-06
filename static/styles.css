@@ -144,11 +144,14 @@ h2 {
 }
 
 h3 {
-    color: #b8cdc4;
+    color: #a4dbc3;
     text-shadow: 3px 1px 0px #fff1e0;
     font-family:'Kangmas', 'Spotify-BoldItalic', 'Franklin Gothic';
     text-align: left;
 
+}
+b {
+    color: #83d5b2;
 }
 .page_title {
     margin-top: 0px;
@@ -175,7 +178,7 @@ h3 {
     margin: 30px;
 }
 .link, .nav-item {
-    color: #a7ccbc ;
+    color: #83d5b2;
     text-decoration: none;
     font-family: 'Spotify-Light';
 }
@@ -201,8 +204,8 @@ h3 {
 
 .artist_grid_div {
     height: 300px;
-    width: auto;
-    margin: 30px;
+    width: 250px;
+    margin: 10px;
     padding-top: 40px;
     background-color: #fff1e0;
 }

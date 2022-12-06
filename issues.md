@@ -14,3 +14,4 @@
 
 ## analysis:
 - using randint to get some random associated artists, not entirely random though
+- html: how to limit repetition... searched it up and Jinja doesn't have any functions

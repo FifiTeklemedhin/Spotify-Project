@@ -8,9 +8,25 @@ import sys
 import math
 import random
 
+def is_artist_or_song_person(num_songs_per_artist): # outputs a string of whether a user is more of an artist or song person depending on the % of artists they only have 1-2 songs they listen to
+    count = 0 # counts number of artists that user is only listening 1-2 songs for
+    num_artists = len(num_songs_per_artist)
+
+    for num in num_songs_per_artist:
+        if num <= 2:
+            count +=1
+    
+    # if user listens to only 1-2 songs for more than 50% of artists, they are a song person
+    if (count / num_artists) > .5:
+        return "song"
+    
+    else:
+        return "artist"
+
 def term_analysis(sp_obj, limit, offset, time_range, num_associated_artists):
     term_top_artists = get_top_artists(sp_obj, limit = limit, offset = offset, time_range= time_range)
     term_user_top_tracks = sp_obj.current_user_top_tracks(limit = 100, offset = offset, time_range= time_range)
+    num_songs_per_artist = []
     artist_data = {}
 
     for artist in term_top_artists["items"]:
@@ -28,11 +44,12 @@ def term_analysis(sp_obj, limit, offset, time_range, num_associated_artists):
         associated_artists = sp_obj.artist_related_artists(artist["id"])["artists"]
         limited_associated_artists = [associated_artists[random.randint(0, len(associated_artists)-1)] for i in range(num_associated_artists)]
         
-        # gets artist's top tracks
+        # artist or song person
+        num_songs_per_artist.append(len(user_top_tracks))
 
         artist_data[artist["name"]] = {"user_top_tracks": user_top_tracks, "artist_top_tracks": limited_artist_top_tracks, "associated_artists": limited_associated_artists}
 
-    return {"top_artists": term_top_artists, "artist_data": artist_data}
+    return {"top_artists": term_top_artists, "artist_data": artist_data, "artist_or_song_person": is_artist_or_song_person(num_songs_per_artist)}
         
 def get_recs_from_random_danceability(sp_obj, limit, offset):
      # gets total of 5 seeds (max allowed by spotify): two top artists and two top tracks over the past few months, and 1 random genre
