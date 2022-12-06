@@ -108,18 +108,17 @@ T o p  A r t i s t s  :  {{term}}
           
           {% if artist_or_song_person == "song"%}
             <p>You are more of a <b>{{artist_or_song_person}}</b> person!</p> 
-            <p>This means that you listen to only 1-2 songs for more than 50% of your top artists for this time range</p>
+            <p>This means that you listened to only 1-2 songs for more than 50% of your top artists for this term</p>
             
             {% else %}
             <p>You are more of an <b>{{artist_or_song_person}}</b> person!</p> <!-- appears repetitive but uses word "an" instead of "a"-->
-            <p>This means that you listen to more than 1-2 songs for more than 50% of your top artists for this time range:</p>
+            <p>This means that you listened to more than 1-2 songs for more than 50% of your top artists for this term</p>
             
           {% endif %}
-    
-          <p>top genres</p>
-          <p>avg popularity of tracks and</p>
-      
         </li>
+
+        <li> top genres </li>
+        <li>avg popularity of tracks and</li>
       </ul>
      
     </div>

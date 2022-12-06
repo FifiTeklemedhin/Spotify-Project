@@ -144,7 +144,7 @@ h2 {
 }
 
 h3 {
-    color: #a4dbc3;
+    color: #addec9;
     text-shadow: 3px 1px 0px #fff1e0;
     font-family:'Kangmas', 'Spotify-BoldItalic', 'Franklin Gothic';
     text-align: left;
@@ -211,4 +211,11 @@ b {
 }
 .analysis_col {
     display: grid;
+}
+/* pre tags (used to format my headers to have spaces between letters and words) kept being scrollable.
+   referenced code from this forum post to fix it: https://stackoverflow.com/questions/1634203/pre-tag-in-html-with-fixed-width*/
+pre {
+    white-space: -moz-pre-wrap; /* Mozilla*/
+    white-space: pre-wrap; /* Chrome SS3 - referenced http://www.w3.org/TR/css3-text/#white-space */
+    word-wrap: break-word; /* Internet Explorer 5.5+ */
 }
