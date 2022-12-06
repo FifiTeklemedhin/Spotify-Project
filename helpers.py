@@ -8,7 +8,25 @@ import sys
 import math
 import random
 
+# def get_guessing_game_stats():
 
+#     short_term_top_artists = get_top_artists(sp_obj, limit = 100, offset = offset, time_range = "short_term")["items"]
+#     medium_term_top_artists = get_top_artists(sp_obj, limit = 100, offset = offset, time_range = "medium_term")["items"]
+#     long_term_top_artists = get_top_artists(sp_obj, limit = 100, offset = offset, time_range = "long_term")["items"]
+
+#     short_term_top_tracks = sp_obj.current_user_top_tracks(limit = 100, offset=offset, time_range="short_term")["items"]
+#     medium_term_top_tracks = sp_obj.current_user_top_tracks(limit = 100, offset=offset, time_range="medium_term")["items"]
+#     long_term_top_tracks = sp_obj.current_user_top_tracks(limit = 100, offset=offset, time_range="long_term")["items"]
+
+#     average_popularity_of_artists = {"short_term": get_popularity_stats(short_term_top_artists, "artist")["mean"], "medium_term": get_popularity_stats(medium_term_top_artists, "artist")["mean"], "long_term": get_popularity_stats(long_term_top_artists, "artist")["mean"]}
+#     average_popularity_of_tracks = {"short_term": get_popularity_stats(short_term_top_tracks, "track")["mean"], "medium_term": get_popularity_stats(medium_term_top_tracks, "track")["mean"], "long_term": get_popularity_stats(long_term_top_tracks, "track")["mean"]}
+    
+#     first_top_artists = {"short_term": short_term_top_artists[0]["name"], "long_term": long_term_top_artists[0]["name"], "medium_term": medium_term_top_artists[0]["name"]}
+#     first_top_tracks = short_term_top_artists[0]["name"]
+
+
+   
+    
 def get_popularity_stats(artists_or_tracks_list, track_or_artist): # requires user to specify if passing in track or artist because the way the popularity is indexed depends on it
     mean = 0
     mode_ranges = {"0-10": 0, "11-20": 0, "21-30": 0, "31-40": 0, "41-50": 0, "51-60":0, "61-70": 0, "71-80":0, "81-90":0, "91-100":0}

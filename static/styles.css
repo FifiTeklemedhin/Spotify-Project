@@ -150,6 +150,14 @@ h3 {
     text-align: left;
 
 }
+
+.guessing-game-header {
+    margin-left: 20px;
+}
+
+h6 {
+    text-align: left;
+}
 b {
     color: #83d5b2;
 }
@@ -218,4 +226,16 @@ pre {
     white-space: -moz-pre-wrap; /* Mozilla*/
     white-space: pre-wrap; /* Chrome SS3 - referenced http://www.w3.org/TR/css3-text/#white-space */
     word-wrap: break-word; /* Internet Explorer 5.5+ */
+}
+
+label { /* used in guessing game*/
+    margin-left: 20px;
+}
+
+.guessing-form {
+    margin-bottom: 70px;
+}
+
+.guessing-submit {
+    margin-left: 60px;
 }

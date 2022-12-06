@@ -9,4 +9,78 @@ Guessing Game
 
 {% block main%}
 
+<h3 class="guessing-game-header">Average Artist Popularity:</h3>
+<h6 class="guessing-game-header"> <i>(out of 100)</i> </h6>
+<form class="guessing-form" action="/game" method="post">
+    <label for="short_term">Short term:</label>
+    <input type="number" id="short_term_field" name="short_term_field">
+    
+    <label for="short_term">Medium term:</label>
+    <input type="number" id="medium_term_field" name="medium_term_field">
+    
+    <label for="short_term">Long term:</label>
+    <input type="number" id="long_term_field" name="long_term_field">
+    
+    <input class="guessing-submit" type="submit">
+</form>
+
+
+<h3 class="guessing-game-header">Average Track Popularity:</h3>
+<h6 class="guessing-game-header"> <i>(out of 100)</i> </h6>
+<form class="guessing-form" action="/game" method="post">
+    <label for="short_term">Short term:</label>
+    <input type="number" id="short_term_field" name="short_term_field">
+    
+    <label for="short_term">Medium term:</label>
+    <input type="number" id="medium_term_field" name="medium_term_field">
+    
+    <label for="short_term">Long term:</label>
+    <input type="number" id="long_term_field" name="long_term_field">
+    
+    <input class="guessing-submit" type="submit">
+</form>
+
+
+<h3 class="guessing-game-header">Top Genre:</h3>
+<form class="guessing-form" action="/game" method="post">
+    <label for="short_term">Short term:</label>
+    <input type="text" id="short_term_field" name="short_term_field">
+    
+    <label for="short_term">Medium term:</label>
+    <input type="text" id="medium_term_field" name="medium_term_field">
+    
+    <label for="short_term">Long term:</label>
+    <input type="text" id="long_term_field" name="long_term_field">
+    
+    <input class="guessing-submit" type="submit">
+</form>
+
+<h3 class="guessing-game-header">Top Artist:</h3>
+<form class="guessing-form" action="/game" method="post">
+    <label for="short_term">Short term:</label>
+    <input type="text" id="short_term_field" name="short_term_field">
+    
+    <label for="short_term">Medium term:</label>
+    <input type="text" id="medium_term_field" name="medium_term_field">
+    
+    <label for="short_term">Long term:</label>
+    <input type="text" id="long_term_field" name="long_term_field">
+    
+    <input class="guessing-submit" type="submit">
+</form>
+
+<h3 class="guessing-game-header">Top Track:</h3>
+<form class="guessing-form" action="/game" method="post">
+    <label for="short_term">Short term:</label>
+    <input type="text" id="short_term_field" name="short_term_field">
+    
+    <label for="short_term">Medium term:</label>
+    <input type="text" id="medium_term_field" name="medium_term_field">
+    
+    <label for="short_term">Long term:</label>
+    <input type="text" id="long_term_field" name="long_term_field">
+    
+    <input class="guessing-submit" type="submit">
+</form>
+
 {% endblock %}

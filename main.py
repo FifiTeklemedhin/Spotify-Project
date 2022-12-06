@@ -24,17 +24,12 @@ global sp_obj
 
 # TODO: put this code into login and authorize other users
 
-# # currently just manually logs into my account
-# scope = "user-top-read"
-
-# # authentication, just made a spotipy object
-# sp_obj = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id= credentials.SPOTIPY_CLIENT_ID, client_secret= credentials.SPOTIPY_CLIENT_SECRET, redirect_uri= credentials.SPOTIPY_REDIRECT_URI, scope=scope))
 
 
 # TODO: authorize other users
 
 
-# *************************** authorization ***************************
+#*************************** authorization ***************************
 from flask import Flask, redirect, request
 import startup
 
@@ -52,6 +47,13 @@ def get_access_token():
 
 
 #*************************** my code ***************************
+# # currently just manually logs into my account
+# scope = "user-top-read"
+
+# # authentication, just made a spotipy object
+# sp_obj = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id= credentials.SPOTIPY_CLIENT_ID, client_secret= credentials.SPOTIPY_CLIENT_SECRET, redirect_uri= credentials.SPOTIPY_REDIRECT_URI, scope=scope))
+
+
 # @app.route("/")
 # def login():
 #     return render_template("login.html")
@@ -97,9 +99,6 @@ def analyze():
 
 
 
-
-
-# TODO: reccomendations
 @app.route("/recommendations", methods=["GET", "POST"])
 def recommend():
 
@@ -146,6 +145,7 @@ def recommend():
 # TODO: guessing game
 @app.route("/game")
 def guessing_game():
+    print("CURRENT USER: {}".format(sp_obj.current_user()))
     return render_template("game.html")
 
 
@@ -155,7 +155,8 @@ def guessing_game():
 
 
 if __name__ == "__main__":
-  app.run()
+#   app.run()
+    app.run(host="localhost", port=5002, debug=True)
 
  
  # ask if alright to use, copied from python dev page : https://pythonprogramming.net/decorator-wrappers-flask-tutorial-login-required/
