@@ -18,15 +18,18 @@ def getToken(code, client_id, client_secret, redirect_uri):
         "client_id": client_id,
         "client_secret": client_secret
     }
-        
-     
-    encoded = base64.b64encode("{}:{}".format(client_id, client_secret))
+
+   # modified from just passing in formatted str to base64.b64encode(), referenced: https://www.geeksforgeeks.org/python-convert-string-to-bytes/
+
+    client_bytes = bytes("{}:{}".format(client_id, client_secret), 'utf-8')
+    encoded = base64.b64encode(client_bytes)
     headers = {"Content-Type" : HEADER, "Authorization" : "Basic {}".format(encoded)} 
 
     post = requests.post(SPOTIFY_URL_TOKEN, params=body, headers=headers)
     return handleToken(json.loads(post.text))
     
 def handleToken(response):
+    print("HANDLE TOKEN RESPONSE: {}".format(response))
     auth_head = {"Authorization": "Bearer {}".format(response["access_token"])}
     REFRESH_TOKEN = response["refresh_token"]
     return [response["access_token"], auth_head, response["scope"], response["expires_in"]]
