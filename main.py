@@ -11,11 +11,6 @@ import random
 from flask import Flask
 from flask import Flask, flash, redirect, render_template, request, session
 
-# referenced how to import files outside of main.py's path from this article: https://stackoverflow.com/questions/4383571/importing-files-from-different-folder 
-import sys
-sys.path.insert(1, "Flask-Spotify-Auth-master")
-
-import startup, setup
 import json
 app = Flask(__name__)
 

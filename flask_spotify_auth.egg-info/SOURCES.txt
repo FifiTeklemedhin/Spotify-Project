@@ -1,8 +1,0 @@
-README.md
-main.py
-flask_spotify_auth.egg-info/PKG-INFO
-flask_spotify_auth.egg-info/SOURCES.txt
-flask_spotify_auth.egg-info/dependency_links.txt
-flask_spotify_auth.egg-info/not-zip-safe
-flask_spotify_auth.egg-info/requires.txt
-flask_spotify_auth.egg-info/top_level.txt
