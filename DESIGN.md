@@ -29,8 +29,9 @@ You can find the outcomes at the end of this document or in README.md
 &nbsp;
 ## Implementation: Data
 ### 'Short', 'Medium', and 'Long Term'
-- Spotify returns data for user activity with 3 time ranges:
-    - Short term:
+- Spotify returns data for user activity with 3 time ranges. Refer to [Spotify's docs](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-users-top-artists-and-tracks) for more information.
+
+    - ![](md_images/time-ranges.png)
 
 &nbsp;
 ### Credentials
