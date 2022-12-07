@@ -133,6 +133,35 @@ I used 3 client credentials to access the `Spotify` API: a `client secret`, `cli
 
             return render_template("history.html", short_term_tracks = get_track_grid(short_term_data), medium_term_tracks = get_track_grid(medium_term_data), long_term_tracks = get_track_grid(long_term_data)) # don't need to specify that index.html is in templates folder as render_templates automatically assumes its in there
         ```
+    - the Jinja in history.html then uses this data:
+        ``` HTML
+        <!-- repeats for all terms-->
+        
+        <h2>Short Term</h2>
+        {% for track_row in range(short_term_tracks | length)%}
+
+        <div id="track_image_grid" class="container text-center">
+            <div class="row">
+                {% for track in range(short_term_tracks[track_row] | length)%}
+                <div class="col track_grid_div">
+                    <img class= "album-cover" src="{{short_term_tracks[track_row][track]['image_link']}}" class="img-fluid"
+                        alt="{{short_term_tracks[track_row][track]['track_name']}}">
+                <br>
+                    <div class = "track_link_div">
+                        <a class="link"
+                        href="{{short_term_tracks[track_row][track]['track_link']}}">{{short_term_tracks[track_row][track]['track_name']}}</a><br /><br>
+                    </div>
+                    
+                </div>
+                
+            
+                {% endfor %}
+            </div>
+        </div>
+        </div>
+
+        {% endfor %}
+        ```
 
 
 
