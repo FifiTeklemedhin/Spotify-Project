@@ -102,3 +102,25 @@ The server encountered an internal error and was unable to complete your request
     python<version> main.py
     ```
 - if the command above does not work, refer to [this site](https://www.python.org/downloads/) and to download `python3` manually **into `root`**
+
+&nbsp;
+# Using the App
+It's finally time to use the app! Below is a quick walkthrough of each page and how to interact with it.
+
+## Home: 
+Home is an informational page with details on what my project does, why I chose to develop it, and more. 
+
+## Prediction Game:
+A quick trivia form before the user gets into the analysis. 
+    - Enter number and words into each mini quiz and press `submit`  to guess the user's listening habits. 
+    - The input fields will turn green or red depending on whether you are correct or not.
+
+## Track History:
+Navigate to this page and it will display the user's top songs in the short, middle, and long term (of all time). 
+
+## Recommendations
+This page generates song recommendations based from random genres or danceability levels, top artists or tracks. 
+Click on a button to get random songs. If you refresh the page, the recommendations will automatically regenerate with recommendations based on the top artists.
+
+## Analysis
+More complex analysis of artists to balance out `Track History` page. Click on links to navigate to an artist or song. Note that some green text is simply bolded
