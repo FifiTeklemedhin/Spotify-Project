@@ -63,6 +63,7 @@ def history():
     # requests client's top tracks and lists them out w/ link
     # can change time_range param to short_term (past 4 weeks) or middle_term (default, past 6 months)
     # ex: results = sp_obj.current_user_top_tracks(time_range= "short_term")
+    
     short_term_data =  sp_obj.current_user_top_tracks(limit = 8, time_range= "short_term") # refer to docs/sample_top_tracks.json for sample output
     medium_term_data = sp_obj.current_user_top_tracks(limit = 8)
     long_term_data = sp_obj.current_user_top_tracks(limit = 8, time_range= "long_term")
@@ -90,10 +91,6 @@ def analyze():
        long_term_analysis = term_analysis(sp_obj, limit, offset, time_range="long_term", num_associated_artists=num_associated_artists) # code in helpers.py
        return render_template("analysis.html", top_artists = long_term_analysis["top_artists"], term = "l o n g  t e r m", artist_data=long_term_analysis["artist_data"], artist_or_song_person = long_term_analysis["artist_or_song_person"], artist_popularity_stats = long_term_analysis["artist_popularity_stats"], track_popularity_stats=long_term_analysis["track_popularity_stats"])
 
-    # top_artists = {"short_term": get_top_artists(sp_obj, limit = limit, offset = offset, time_range = "short_term"), "medium_term": get_top_artists(sp_obj, limit = limit, offset = offset, time_range = "medium_term"), "long_term": get_top_artists(sp_obj, limit = limit, offset = offset, time_range = "long_term")}
-    # return render_template("analysis.html", top_artists = top_artists) # don't need to specify that index.html is in templates folder as render_templates automatically assumes its in there
-
-
 
 @app.route("/recommendations", methods=["GET", "POST"])
 def recommend():
@@ -103,6 +100,7 @@ def recommend():
         offset = 0
         recomendations = {}
 
+        # finds which button was clicked to base recommendstions off of
         if request.form.get('top_artists') == 'Top artists':
             recommendations = get_recs_from_artists(sp_obj, limit=limit, offset=offset)
             return render_template("recommendations.html", recommendations = recommendations)
@@ -146,27 +144,6 @@ def guessing_game():
     guessing_game_stats = get_guessing_game_stats(sp_obj, offset)
     return render_template("game.html", guessing_game_stats=guessing_game_stats, js_stats = json.dumps(guessing_game_stats))
 
-
-
-
-#   first analyze info about user, then put those analyzations as seeds into reccomendations function
-
-
 if __name__ == "__main__":
 #   app.run()
     app.run(host="localhost", port=5002, debug=True)
-
- 
- # ask if alright to use, copied from python dev page : https://pythonprogramming.net/decorator-wrappers-flask-tutorial-login-required/
-
-#  def login_required(f):
-#     @wraps(f)
-#     def wrap(*args, **kwargs):
-#         if 'logged_in' in session:
-#             return f(*args, **kwargs)
-#         else:
-#             flash("You need to login first")
-#             return redirect(url_for('login_page'))
-
-#     return wrap
-    
