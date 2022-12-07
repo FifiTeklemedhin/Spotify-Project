@@ -10,25 +10,6 @@ T r a c k     H i s t o r y
 {% block main%}
 
 
-<!-- 
-    {% for track in all_track_data %}
-     
-        track: {{track}}
-        track link: {{all_track_data[track]['track_link']}}
-        image link: {{all_track_data[track]['image_link']}} -->
-
-<!-- Displays images and links to track-->
-
-
-
-<!-- <div>
-            <img width="250px" src="{{all_track_data[track]['image_link']}}" alt="{{all_track_data[track]['track_name']}}"><br/><br>
-            <a href="{{all_track_data[track]['track_link']}}">{{all_track_data[track]['track_name']}}</a><br/><br>
-        </div> 
-       
-       
-    {% endfor %} -->
-
 <h2>Short Term</h2>
 {% for track_row in range(short_term_tracks | length)%}
 

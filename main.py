@@ -17,32 +17,6 @@ app = Flask(__name__)
 global scope
 global sp_obj
 
-# TODO: put this code into login and authorize other users
-
-
-
-# TODO: authorize other users
-
-
-#*************************** authorization ***************************
-# from flask import Flask, redirect, request
-# import startup
-
-# @app.route('/')
-# def index():
-#     response = startup.getUser()
-#     print("RESPONSE {}\n\n".format(response))
-#     return redirect(response)
-        
-# @app.route('/callback')
-# def get_access_token():
-#     resp2 = startup.getUserToken(request.args['code'])
-#     print("RESP2: {}\n".format(resp2))
-#     # ** I redirect to my homepage here **
-#     return render_template("login.html")
-
-
-#*************************** my code ***************************
 # currently just manually logs into my account
 scope = "user-top-read"
 
@@ -51,12 +25,12 @@ sp_obj = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id= credentials.SPOTIP
 
 
 @app.route("/")
-def login():
-    return render_template("login.html")
+def home():
+    return render_template("home.html")
 
 
 @app.route("/history")
-# @login_required
+
 def history():
 
    
@@ -74,7 +48,7 @@ def history():
 
 
 @app.route("/analysis", methods=["POST"])
-#@long_required
+
 def analyze():
     limit = 4
     offset = 0
@@ -142,6 +116,8 @@ def guessing_game():
 
     offset = 0
     guessing_game_stats = get_guessing_game_stats(sp_obj, offset)
+    
+    #just returns statistics
     return render_template("game.html", guessing_game_stats=guessing_game_stats, js_stats = json.dumps(guessing_game_stats))
 
 if __name__ == "__main__":

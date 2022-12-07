@@ -1,0 +1,84 @@
+{% extends 'layout.html' %}
+{% block title%}
+Home
+{% endblock %}
+
+{% block page_title%}
+<pre><h1>H o m e</h1></pre>
+{% endblock %}
+
+{% block main%}
+<div style="text-align: left; padding-left: 20px">
+
+
+<h3>Overview</h3>
+<p>
+    My project is a simpler version of `Spotify Wrapped`. It will use the Spotify API to analyze a user's music over recent and less recent time periods, and then for all time. It will perhaps offer a quiz at the beginning  and some recommendations at the end.
+</p>
+
+
+<h3>Why this App</h3>
+<p>I love listening to various types of music! I wanted to make an app where I could view my listening data for a ***very** long time, but didn't know where to begin. `JavaScript`, which I found quite difficult to parse, was too intimidating. When I discovered `Flask`, I still had no idea `Jinja` existed.
+</p>
+<p>My CS50 final felt like the opporunity to attempt this app!</p>
+
+
+<h3>Goals</h3>
+You can find the outcomes at the end of this document or in README.md
+<ul>
+    <li>
+        Good Outcomes: 
+        <li>
+            Analyzing my own spotify data with pages on listening history in recent and longer time spans, then also all time.
+        </li> 
+
+    </li>
+
+    <li>
+        Better Outcomes: 
+        <li>
+            Allowing for users to authorize the site to use their spotify data or perhaps pass it in as a file. 
+        </li> 
+
+        <li>
+            Creating a guessing game based off of their listening histories.
+        </li>
+
+    </li>
+
+    <li>
+        Best Outcomes: 
+        <li>
+            Having a recommendation feature for songs/artists 
+        </li> 
+        
+        <li>
+            Creating a (decently) aesthetically pleasing interface.
+        </li>
+
+    </li>
+
+</ul>
+
+
+<h3>Implementation: Data: 'Short', 'Medium', and 'Long Term'</h3>
+<ul>
+    <li>  
+        Spotify returns data for user activity with 3 time ranges. Refer to [Spotify's docs](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-users-top-artists-and-tracks) for more information.
+        <li>
+            Short term: last month
+        </li>
+        
+        <li>
+            Medium term: past 6 months
+        </li>
+
+        <li>
+            Long term all time
+        </li>
+    </li>
+</ul>
+
+</div>
+
+{% endblock %}

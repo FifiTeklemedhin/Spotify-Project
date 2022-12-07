@@ -226,6 +226,8 @@ pre {
     white-space: -moz-pre-wrap; /* Mozilla*/
     white-space: pre-wrap; /* Chrome SS3 - referenced http://www.w3.org/TR/css3-text/#white-space */
     word-wrap: break-word; /* Internet Explorer 5.5+ */
+    margin-top: -150px;
+    margin-bottom: 10px;
 }
 
 label { /* used in guessing game*/
