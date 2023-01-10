@@ -2,6 +2,8 @@
 
 Thank you for taking the time to look at my final project! I developed a web app that uses the Spotify API to analyze my listening data. Below are the steps to trying this code out for yourself.
 
+**Demo Video**:  https://youtu.be/oJgVaWMvp8U
+
 
 ## Navigate to Correct Directory
 &nbsp;
